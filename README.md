@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-# SmartDaigoku
+SmartDaigoku
 =======
-# smart_daigoku
-
-A new Flutter project.
-
 ## Getting Started
 
 This project is a starting point for a Flutter application.
