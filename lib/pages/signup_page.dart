@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:smart_daigoku/Components/my_textfield.dart';
+import 'package:smart_daigoku/components/my_textfield.dart';
 
 class SignUp extends StatefulWidget {
   SignUp({super.key});
@@ -10,6 +10,16 @@ class SignUp extends StatefulWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmpasswordController = TextEditingController();
+  /*
+  void onChanged(bool? newValue) {
+
+  bool agreedToTerms = false;
+    setState(() {
+      agreedToTerms =
+          newValue ?? false; // Update agreedToTerms based on checkbox state
+    });
+  }
+  */
 
   @override
   State<SignUp> createState() => _SignUpState();
@@ -128,7 +138,7 @@ class _SignUpState extends State<SignUp> {
               height: 10,
             ),
             //name Textfield
-            Mytextfeild(
+            Mytextfield(
                 controller: widget.nameController,
                 hintText: "Enter Name",
                 obscureText: false),
@@ -136,7 +146,7 @@ class _SignUpState extends State<SignUp> {
               height: 10,
             ),
             //username Textfield
-            Mytextfeild(
+            Mytextfield(
                 controller: widget.usernameController,
                 hintText: "Enter Username",
                 obscureText: false),
@@ -144,7 +154,7 @@ class _SignUpState extends State<SignUp> {
               height: 10,
             ),
             //email Textfield
-            Mytextfeild(
+            Mytextfield(
                 controller: widget.emailController,
                 hintText: "Enter Email",
                 obscureText: false),
@@ -152,7 +162,7 @@ class _SignUpState extends State<SignUp> {
               height: 10,
             ),
             //password Textfield
-            Mytextfeild(
+            Mytextfield(
                 controller: widget.passwordController,
                 hintText: "Enter Paswword",
                 obscureText: true),
@@ -160,7 +170,7 @@ class _SignUpState extends State<SignUp> {
               height: 10,
             ),
             //confirmpassword Textfield
-            Mytextfeild(
+            Mytextfield(
                 controller: widget.confirmpasswordController,
                 hintText: "confirm Password",
                 obscureText: false),
@@ -168,35 +178,69 @@ class _SignUpState extends State<SignUp> {
               height: 10,
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                /*
                 Checkbox(
-                  value: false, // Provide the value of the checkbox
-                  onChanged: (newValue) {
-                    // Implement onChanged to handle checkbox state
-                  },
-                  checkColor: Colors.white, // Color of the check icon
-                  fillColor: MaterialStateProperty.resolveWith(
-                      (states) => Colors.white), // Fill color of the checkbox
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(width: 1),
-                    borderRadius: BorderRadius.circular(4),
-                  ),
+                  value: agreedToTerms,
+                  onChanged: onChanged,
                 ),
-                SizedBox(
-                    width:
-                        10), // Adjust as needed for spacing between checkbox and text
-                Expanded(
-                  child: Text(
-                    'I agree with the Terms of Service and Privacy policy',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 12,
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w700,
-                    ),
+                */
+                Text(
+                  'I agree to the Terms of Service and Privacy Policy',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
               ],
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                color: Colors.black,
+              ),
+              height: 56,
+              width: 180,
+              child: Center(
+                child: Text(
+                  "Creat Account",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 5.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Already have an account ? ",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
+                    "Login",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
+              ),
             )
           ],
         ),

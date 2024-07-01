@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_import, duplicate_ignore
 
 // ignore_for_file: prefer_const_constructors
 
@@ -23,6 +23,6 @@ class MyApp extends StatelessWidget {
 class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return InitialPage();
+    return SignUp();
   }
 }
