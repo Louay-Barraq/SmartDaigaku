@@ -9,17 +9,7 @@ class SignUp extends StatefulWidget {
   final usernameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final confirmpasswordController = TextEditingController();
-  /*
-  void onChanged(bool? newValue) {
-
-  bool agreedToTerms = false;
-    setState(() {
-      agreedToTerms =
-          newValue ?? false; // Update agreedToTerms based on checkbox state
-    });
-  }
-  */
+  final confirmPasswordController = TextEditingController();
 
   @override
   State<SignUp> createState() => _SignUpState();
@@ -171,7 +161,7 @@ class _SignUpState extends State<SignUp> {
             ),
             //confirmpassword Textfield
             Mytextfield(
-                controller: widget.confirmpasswordController,
+                controller: widget.confirmPasswordController,
                 hintText: "confirm Password",
                 obscureText: false),
             SizedBox(
