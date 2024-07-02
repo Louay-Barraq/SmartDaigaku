@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_literals_to_create_immutables, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
 import 'package:smart_daigoku/components/choice_box.dart';
@@ -96,6 +96,14 @@ class _InitialPageState extends State<InitialPage> {
                       ),
                     )
                   ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(left: 200),
+                child: Image.asset(
+                  "assets/images/new_beginnings.png",
+                  width: 200,
+                  height: 200,
                 ),
               )
             ],
