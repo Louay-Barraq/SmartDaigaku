@@ -1,11 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:smart_daigoku/components/SignupTextfield.dart';
+import 'package:smart_daigoku/components/signup_textfield.dart';
 import 'package:smart_daigoku/components/google_button.dart';
 
-class SignUp extends StatefulWidget {
-  SignUp({super.key});
+class SignUpPage extends StatefulWidget {
+  SignUpPage({super.key});
   final nameController = TextEditingController();
   final usernameController = TextEditingController();
   final emailController = TextEditingController();
@@ -13,25 +13,23 @@ class SignUp extends StatefulWidget {
   final confirmPasswordController = TextEditingController();
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 30, 210, 140),
-      body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15),
-          child: SafeArea(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 8.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 30,
-                    vertical: 15,
-                  ),
+                  padding: const EdgeInsets.fromLTRB(30, 20, 0, 25),
                   child: Text(
                     'Sign up to SmartDaigoku !',
                     style: TextStyle(
@@ -77,111 +75,90 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                 ]),
-                SizedBox(
-                  height: 10,
-                ),
-                //name Textfield
-                Signuptextfield(
+                SizedBox(height: 30),
+                signUpTextField(
                     controller: widget.nameController,
-                    hintText: "Enter Name",
+                    hintText: "Enter your name",
                     obscureText: false),
-                SizedBox(
-                  height: 10,
-                ),
-                //username Textfield
-                Signuptextfield(
+                SizedBox(height: 10),
+                signUpTextField(
                     controller: widget.usernameController,
-                    hintText: "Enter Username",
+                    hintText: "Enter your username",
                     obscureText: false),
-                SizedBox(
-                  height: 10,
-                ),
-                //email Textfield
-                Signuptextfield(
+                SizedBox(height: 10),
+                signUpTextField(
                     controller: widget.emailController,
-                    hintText: "Enter Email",
+                    hintText: "Enter your email",
                     obscureText: false),
-                SizedBox(
-                  height: 10,
-                ),
-
+                SizedBox(height: 10),
                 signUpTextField(
                     controller: widget.passwordController,
-                    hintText: "Enter Paswword",
+                    hintText: "Enter your password",
                     obscureText: true),
-                SizedBox(
-                  height: 10,
-                ),
-
+                SizedBox(height: 10),
                 signUpTextField(
                     controller: widget.confirmPasswordController,
-                    hintText: "confirm Password",
+                    hintText: "Confirm your password",
                     obscureText: false),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'I agree to the Terms of Service and Privacy Policy',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: Colors.black,
-                  ),
-                  height: 56,
-                  width: 180,
-                  child: Center(
-                    child: Text(
-                      "Create Account",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 5.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Already have an account ? ",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 17,
-                          fontWeight: FontWeight.w600,
+                SizedBox(height: 30.0),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            color: Colors.black,
+                          ),
+                          height: 45,
+                          width: 180,
+                          child: Center(
+                            child: Text(
+                              "Create Account",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                      Text(
-                        "Login",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 17,
-                          fontWeight: FontWeight.w700,
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10.0),
+                          child: Text(
+                            "Already have an account?",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
                         ),
-                      ),
-                    ],
+                        GestureDetector(
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 68),
+                            child: Text(
+                              "Login",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                )
+                ),
               ],
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 }
