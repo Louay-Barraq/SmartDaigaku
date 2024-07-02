@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_typing_uninitialized_variables
+// ignore_for_file: prefer_typing_uninitialized_variables, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 
@@ -22,13 +22,13 @@ class Logintextfield extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: Colors.transparent,
-          borderRadius: BorderRadius.circular(50), // Optional: Rounded corners
+          borderRadius: BorderRadius.circular(50),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.3), // Shadow color with opacity
-              spreadRadius: 2, // Spread radius
-              blurRadius: 5, // Blur radius
-              offset: Offset(0, 3), // Offset in x and y direction
+              color: Color(0x3F000000),
+              spreadRadius: 0,
+              blurRadius: 4,
+              offset: Offset(0, 4),
             ),
           ],
         ),
@@ -37,15 +37,15 @@ class Logintextfield extends StatelessWidget {
           obscureText: obscureText,
           decoration: InputDecoration(
             contentPadding:
-                EdgeInsets.symmetric(vertical: 25, horizontal: 10.0),
+                EdgeInsets.symmetric(vertical: 12, horizontal: 20.0),
             enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.white),
                 borderRadius: BorderRadius.circular(50)),
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black),
+                borderSide: BorderSide(color: Colors.grey),
                 borderRadius: BorderRadius.circular(50)),
             hintText: hintText,
-            fillColor: Colors.grey[200],
+            fillColor: const Color.fromARGB(255, 255, 255, 255),
             filled: true,
           ),
         ),
