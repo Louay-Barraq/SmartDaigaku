@@ -94,18 +94,18 @@ class _InitialPageState extends State<InitialPage> {
                           ),
                         ],
                       ),
-                    )
+                    ),
+                    Container(
+                      padding: const EdgeInsets.only(left: 200),
+                      child: Image.asset(
+                        "assets/images/new_beginnings.png",
+                        width: 200,
+                        height: 200,
+                      ),
+                    ),
                   ],
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.only(left: 200),
-                child: Image.asset(
-                  "assets/images/new_beginnings.png",
-                  width: 200,
-                  height: 200,
-                ),
-              )
             ],
           ),
         ),
