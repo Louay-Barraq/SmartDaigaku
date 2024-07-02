@@ -2,11 +2,11 @@
 
 import 'package:flutter/material.dart';
 
-class Signuptextfield extends StatelessWidget {
+class signUpTextField extends StatelessWidget {
   final controller;
   final String hintText;
   final bool obscureText;
-  const Signuptextfield({
+  const signUpTextField({
     super.key,
     required this.controller,
     required this.hintText,
@@ -22,13 +22,13 @@ class Signuptextfield extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: Colors.transparent,
-          borderRadius: BorderRadius.circular(50), // Optional: Rounded corners
+          borderRadius: BorderRadius.circular(50),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.3), // Shadow color with opacity
-              spreadRadius: 2, // Spread radius
-              blurRadius: 5, // Blur radius
-              offset: Offset(0, 3), // Offset in x and y direction
+              color: Colors.black.withOpacity(0.3),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: Offset(0, 3),
             ),
           ],
         ),
@@ -41,7 +41,7 @@ class Signuptextfield extends StatelessWidget {
                 borderSide: BorderSide(color: Colors.white),
                 borderRadius: BorderRadius.circular(50)),
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black),
+                borderSide: BorderSide(color: Colors.grey),
                 borderRadius: BorderRadius.circular(50)),
             hintText: hintText,
             fillColor: Colors.grey[200],

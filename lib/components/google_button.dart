@@ -15,7 +15,7 @@ class GoogleButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.symmetric(vertical: 5),
         margin: EdgeInsets.symmetric(horizontal: 30),
         decoration: BoxDecoration(
           color: Colors.black,
@@ -27,15 +27,18 @@ class GoogleButton extends StatelessWidget {
             children: [
               Image.asset(
                 "assets/images/google_icon.png",
-                width: 30,
-                height: 30,
+                width: 33,
+                height: 33,
               ),
-              Text(
-                childText,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Text(
+                  childText,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
                 ),
               ),
             ],
