@@ -21,120 +21,82 @@ class _LoginPageState extends State<LoginPage> {
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 15),
         child: SafeArea(
-            child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                  width: 319,
-                  height: 100,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 25,
-                    ),
-                    child: Text(
-                      'Log In to SmartDaigoku !',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 30,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w700,
-                        height: 0,
-                      ),
-                    ),
-                  )),
-              SizedBox(
-                child: GoogleButton(
-                  onTap: () {},
-                  childText: "Sign up with Google",
+              Padding(
+                padding: const EdgeInsets.fromLTRB(30, 20, 0, 25),
+                child: Text(
+                  'Login to SmartDaigoku !',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 30,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w700,
+                    height: 0,
+                  ),
                 ),
               ),
-
-              SizedBox(
-                height: 15,
-              ),
-              Container(
-                width: 350,
-                height: 18,
-                child: Stack(
-                  children: [
-                    Positioned(
-                      left: 93,
-                      top: 0,
-                      child: Text(
-                        'Or log in with Email',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w700,
-                          height: 0,
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      left: 0,
-                      top: 9,
-                      child: Container(
-                        width: 82,
-                        decoration: ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(
-                              width: 1,
-                              strokeAlign: BorderSide.strokeAlignCenter,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      left: 268,
-                      top: 9,
-                      child: Container(
-                        width: 82,
-                        decoration: ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(
-                              width: 1,
-                              strokeAlign: BorderSide.strokeAlignCenter,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              GoogleButton(
+                onTap: () {},
+                childText: "Login with Google",
               ),
               SizedBox(
-                height: 15,
+                height: 25,
               ),
-
-              //name Textfield
-              Container(
-                child: Column(
-                  children: [
-                    Text(
-                      "Username or Email",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 17,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w700,
-                        height: 0,
-                      ),
+              Row(
+                children: [
+                  Expanded(
+                    child: Divider(
+                      color: Colors.black,
+                      thickness: 1.5,
+                      height: 10,
+                      indent: 10,
+                      endIndent: 10,
                     ),
-                  ],
+                  ),
+                  Text(
+                    "Or Login with Email",
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  ),
+                  Expanded(
+                    child: Divider(
+                      color: Colors.black,
+                      thickness: 1.3,
+                      height: 10,
+                      indent: 10,
+                      endIndent: 10,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 30.0),
+              Padding(
+                padding: const EdgeInsets.only(left: 25.0, bottom: 8.0),
+                child: Text(
+                  "Username or Email",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 17,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w700,
+                    height: 0,
+                  ),
                 ),
               ),
-              Logintextfield(
+              loginTextField(
                   controller: widget.usernameController,
                   hintText: "Enter Name",
                   obscureText: false),
               SizedBox(
-                height: 15,
+                height: 22,
               ),
-              Container(
-                child: Column(
+              Padding(
+                padding:
+                    const EdgeInsets.only(left: 25.0, right: 30.0, bottom: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       "Password",
@@ -146,37 +108,48 @@ class _LoginPageState extends State<LoginPage> {
                         height: 0,
                       ),
                     ),
+                    Text(
+                      "Forgot?",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w300,
+                      ),
+                    )
                   ],
                 ),
               ),
-              //password Textfield
-              Logintextfield(
+              loginTextField(
                   controller: widget.passwordController,
-                  hintText: "Enter Paswword",
+                  hintText: "Enter Password",
                   obscureText: true),
               SizedBox(
-                height: 10,
+                height: 30,
               ),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color: Colors.black,
-                ),
-                height: 56,
-                width: 180,
-                child: Center(
-                  child: Text(
-                    "Log In",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
+              Padding(
+                padding: const EdgeInsets.only(left: 30.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: Colors.black,
+                  ),
+                  height: 45,
+                  width: 170,
+                  child: Center(
+                    child: Text(
+                      "Login",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 5.0),
+                padding: const EdgeInsets.only(top: 5.0, left: 30.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -184,15 +157,15 @@ class _LoginPageState extends State<LoginPage> {
                       "Don't have an account ? ",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 17,
+                        fontSize: 15,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                     Text(
-                      "Sign In",
+                      "Sign up",
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 17,
+                        fontSize: 15,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
@@ -201,7 +174,7 @@ class _LoginPageState extends State<LoginPage> {
               )
             ],
           ),
-        )),
+        ),
       ),
     );
   }
