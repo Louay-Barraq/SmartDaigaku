@@ -25,10 +25,10 @@ class signUpTextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(50),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.3),
-              spreadRadius: 2,
-              blurRadius: 5,
-              offset: Offset(0, 3),
+              color: Colors.black.withOpacity(0.25),
+              spreadRadius: 0,
+              blurRadius: 4,
+              offset: Offset(0, 4),
             ),
           ],
         ),
