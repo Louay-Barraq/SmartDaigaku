@@ -2,11 +2,11 @@
 
 import 'package:flutter/material.dart';
 
-class Logintextfield extends StatelessWidget {
+class loginTextField extends StatelessWidget {
   final controller;
   final String hintText;
   final bool obscureText;
-  const Logintextfield({
+  const loginTextField({
     super.key,
     required this.controller,
     required this.hintText,
@@ -25,7 +25,7 @@ class Logintextfield extends StatelessWidget {
           borderRadius: BorderRadius.circular(50),
           boxShadow: [
             BoxShadow(
-              color: Color(0x3F000000),
+              color: Colors.black.withOpacity(0.25),
               spreadRadius: 0,
               blurRadius: 4,
               offset: Offset(0, 4),
@@ -37,7 +37,7 @@ class Logintextfield extends StatelessWidget {
           obscureText: obscureText,
           decoration: InputDecoration(
             contentPadding:
-                EdgeInsets.symmetric(vertical: 12, horizontal: 20.0),
+                EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
             enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.white),
                 borderRadius: BorderRadius.circular(50)),
@@ -45,7 +45,7 @@ class Logintextfield extends StatelessWidget {
                 borderSide: BorderSide(color: Colors.grey),
                 borderRadius: BorderRadius.circular(50)),
             hintText: hintText,
-            fillColor: const Color.fromARGB(255, 255, 255, 255),
+            fillColor: Colors.white,
             filled: true,
           ),
         ),

@@ -20,7 +20,7 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(215, 124, 251, 202),
+      backgroundColor: Color.fromARGB(255, 30, 210, 140),
       body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 15),
           child: SafeArea(
@@ -104,16 +104,16 @@ class _SignUpState extends State<SignUp> {
                 SizedBox(
                   height: 10,
                 ),
-                //password Textfield
-                Signuptextfield(
+
+                signUpTextField(
                     controller: widget.passwordController,
                     hintText: "Enter Paswword",
                     obscureText: true),
                 SizedBox(
                   height: 10,
                 ),
-                //confirmpassword Textfield
-                Signuptextfield(
+
+                signUpTextField(
                     controller: widget.confirmPasswordController,
                     hintText: "confirm Password",
                     obscureText: false),
@@ -123,12 +123,6 @@ class _SignUpState extends State<SignUp> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    /*
-                  Checkbox(
-                    value: agreedToTerms,
-                    onChanged: onChanged,
-                  ),
-                  */
                     Text(
                       'I agree to the Terms of Service and Privacy Policy',
                       style: TextStyle(
@@ -152,7 +146,7 @@ class _SignUpState extends State<SignUp> {
                   width: 180,
                   child: Center(
                     child: Text(
-                      "Creat Account",
+                      "Create Account",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 15,

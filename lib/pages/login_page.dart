@@ -19,39 +19,34 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 30, 210, 140),
       body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15),
-          child: SafeArea(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(
-                    width: 319,
-                    height: 100,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 25,
-                      ),
-                      child: Text(
-                        'Log In to SmartDaigoku !',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w700,
-                          height: 0,
-                        ),
-                      ),
-                    )),
-                GoogleButton(
-                  onTap: () {},
-                  childText: "Log in with Google",
+        padding: const EdgeInsets.symmetric(vertical: 15),
+        child: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(30, 20, 0, 25),
+                child: Text(
+                  'Login to SmartDaigoku !',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 30,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w700,
+                    height: 0,
+                  ),
                 ),
-
-                SizedBox(
-                  height: 15,
-                ),
-                // or log in with Email
-                Row(children: [
+              ),
+              GoogleButton(
+                onTap: () {},
+                childText: "Login with Google",
+              ),
+              SizedBox(
+                height: 25,
+              ),
+              Row(
+                children: [
                   Expanded(
                     child: Divider(
                       color: Colors.black,
@@ -62,26 +57,24 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   Text(
-                    "Or Log In With Email",
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                    "Or Login with Email",
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                   ),
                   Expanded(
                     child: Divider(
                       color: Colors.black,
-                      thickness: 1.5,
+                      thickness: 1.3,
                       height: 10,
                       indent: 10,
                       endIndent: 10,
                     ),
                   ),
-                ]),
-
-                SizedBox(
-                  height: 15,
-                ),
-
-                //name Textfield
-                Text(
+                ],
+              ),
+              SizedBox(height: 30.0),
+              Padding(
+                padding: const EdgeInsets.only(left: 25.0, bottom: 8.0),
+                child: Text(
                   "Username or Email",
                   style: TextStyle(
                     color: Colors.black,
@@ -91,15 +84,19 @@ class _LoginPageState extends State<LoginPage> {
                     height: 0,
                   ),
                 ),
-                Logintextfield(
-                    controller: widget.usernameController,
-                    hintText: "Enter Name",
-                    obscureText: false),
-                SizedBox(
-                  height: 15,
-                ),
-
-                Row(
+              ),
+              loginTextField(
+                  controller: widget.usernameController,
+                  hintText: "Enter Name",
+                  obscureText: false),
+              SizedBox(
+                height: 22,
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.only(left: 25.0, right: 30.0, bottom: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       "Password",
@@ -111,61 +108,74 @@ class _LoginPageState extends State<LoginPage> {
                         height: 0,
                       ),
                     ),
+                    Text(
+                      "Forgot?",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w300,
+                      ),
+                    )
                   ],
                 ),
-                //password Textfield
-                Logintextfield(
-                    controller: widget.passwordController,
-                    hintText: "Enter Paswword",
-                    obscureText: true),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
+              ),
+              loginTextField(
+                  controller: widget.passwordController,
+                  hintText: "Enter Password",
+                  obscureText: true),
+              SizedBox(
+                height: 30,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 30.0),
+                child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
                     color: Colors.black,
                   ),
-                  height: 56,
-                  width: 180,
+                  height: 45,
+                  width: 170,
                   child: Center(
                     child: Text(
-                      "Log In",
+                      "Login",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 15,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 5.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Don't have an account ? ",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 17,
-                          fontWeight: FontWeight.w600,
-                        ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5.0, left: 30.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Don't have an account ? ",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
                       ),
-                      Text(
-                        "Sign In",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 17,
-                          fontWeight: FontWeight.w700,
-                        ),
+                    ),
+                    Text(
+                      "Sign up",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
                       ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          )),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
