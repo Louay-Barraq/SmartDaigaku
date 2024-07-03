@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_import, duplicate_ignore
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_import, duplicate_ignore, use_key_in_widget_constructors
 
 // ignore_for_file: prefer_const_constructors
 
@@ -17,11 +17,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: WelcomeScreen(),
+      initialRoute: '/',
+      routes: {
+        '/login': (context) => LoginPage(),
+        '/signUp': (context) => SignUpPage(),
+      },
     );
   }
 }
 
 class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return InitialPage();
