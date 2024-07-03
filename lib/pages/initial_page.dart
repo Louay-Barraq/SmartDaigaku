@@ -14,7 +14,7 @@ class _InitialPageState extends State<InitialPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(121, 201, 158, 1.0),
+      backgroundColor: Color.fromARGB(255, 30, 210, 140),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -54,20 +54,25 @@ class _InitialPageState extends State<InitialPage> {
                       SizedBox(height: 25),
                       ChoiceBox(mainText: "Academic Staff Member"),
                       SizedBox(height: 35),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20.0),
-                          color: Colors.black,
-                        ),
-                        height: 52,
-                        width: 260,
-                        child: Center(
-                          child: Text(
-                            "Sign Up",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/signUp');
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.0),
+                            color: Colors.black,
+                          ),
+                          height: 52,
+                          width: 260,
+                          child: Center(
+                            child: Text(
+                              "Sign Up",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
                         ),
@@ -85,22 +90,30 @@ class _InitialPageState extends State<InitialPage> {
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            Text(
-                              "Login",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 17,
-                                fontWeight: FontWeight.w700,
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, '/login');
+                              },
+                              child: Text(
+                                "Login",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w700,
+                                ),
                               ),
-                            ),
+                            )
                           ],
                         ),
                       ),
-                      Container(
-                        child: Image.asset(
-                          "assets/images/new_beginnings.png",
-                          width: 180,
-                          height: 180,
+                      Positioned(
+                        child: Align(
+                          alignment: Alignment.bottomRight,
+                          child: Image.asset(
+                            "assets/images/new_beginnings.png",
+                            width: 180,
+                            height: 180,
+                          ),
                         ),
                       ),
                     ],

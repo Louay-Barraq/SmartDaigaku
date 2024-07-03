@@ -20,6 +20,7 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: Color.fromARGB(255, 30, 210, 140),
       body: SafeArea(
         child: SingleChildScrollView(
+          physics: NeverScrollableScrollPhysics(),
           child: Padding(
             padding: const EdgeInsets.only(top: 8.0),
             child: Column(
@@ -87,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                loginTextField(
+                LoginTextField(
                     controller: widget.usernameController,
                     hintText: "Enter Name",
                     obscureText: false),
@@ -122,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                 ),
-                loginTextField(
+                LoginTextField(
                     controller: widget.passwordController,
                     hintText: "Enter Password",
                     obscureText: true),
@@ -163,17 +164,33 @@ class _LoginPageState extends State<LoginPage> {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      Text(
-                        "Sign up",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w700,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, '/signUp'); // Navigate to the LoginPage
+                        },
+                        child: Text(
+                          "Sign up",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
-                      ),
+                      )
                     ],
                   ),
-                )
+                ),
+                Positioned(
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: Image.asset(
+                      "assets/images/reflecting.png",
+                      width: 300,
+                      height: 300,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
