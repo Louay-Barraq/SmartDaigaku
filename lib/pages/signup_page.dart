@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_daigoku/auth/auth_service.dart';
 import 'package:smart_daigoku/components/signup_textfield.dart';
@@ -18,11 +19,51 @@ class _SignUpPageState extends State<SignUpPage> {
   final _authService = AuthService();
 
   // TextField Controllers
+
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
   final nameController = TextEditingController();
   final usernameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  User? user;
+
+  @override
+  void initState() {
+    super.initState();
+    auth.authStateChanges().listen((User? user) {
+      setState(() {
+        this.user = user;
+      });
+    });
+  }
+
+  Future<void> googleSignUp() async {
+    try {
+      final GoogleSignIn googleSignIn = GoogleSignIn();
+      final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+      if (googleUser == null) {
+        return;
+      }
+
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+      final OAuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      await auth.signInWithCredential(credential);
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +90,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
 
                 GoogleButton(
-                  onTap: () {},
+                  onTap: googleSignUp,
                   childText: "Sign up with Google",
                 ),
                 SizedBox(height: 25),

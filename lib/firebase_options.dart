@@ -63,6 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '848255850094',
     projectId: 'smart-daigoku-d4422',
     storageBucket: 'smart-daigoku-d4422.appspot.com',
+    iosClientId: '848255850094-rrdud6sjml9vrhnfntjrvjoqc30rm7ar.apps.googleusercontent.com',
     iosBundleId: 'com.example.smartDaigoku',
   );
+
 }
