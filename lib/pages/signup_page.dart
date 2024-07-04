@@ -1,27 +1,32 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:smart_daigoku/auth/auth_service.dart';
 import 'package:smart_daigoku/components/signup_textfield.dart';
 import 'package:smart_daigoku/components/google_button.dart';
+import 'package:smart_daigoku/pages/home_page.dart';
 import 'package:smart_daigoku/pages/login_page.dart';
 
 class SignUpPage extends StatefulWidget {
   SignUpPage({super.key, required void Function() onTapFunction});
-  final nameController = TextEditingController();
-  final usernameController = TextEditingController();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final confirmPasswordController = TextEditingController();
-
   @override
   State<SignUpPage> createState() => _SignUpPageState();
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  // Firebase Authentication Instance
+  final _authService = AuthService();
+
+  // TextField Controllers
+  final nameController = TextEditingController();
+  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 30, 210, 140),
+      backgroundColor: Color.fromARGB(255, 121, 201, 158),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -79,33 +84,33 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 SizedBox(height: 30),
                 SignUpTextField(
-                  controller: widget.nameController,
+                  controller: nameController,
                   hintText: "Enter your name",
                   obscureText: false,
                 ),
                 SizedBox(height: 10),
                 SignUpTextField(
-                  controller: widget.usernameController,
+                  controller: usernameController,
                   hintText: "Enter your username",
                   obscureText: false,
                 ),
                 SizedBox(height: 10),
                 SignUpTextField(
-                  controller: widget.emailController,
+                  controller: emailController,
                   hintText: "Enter your email",
                   obscureText: false,
                 ),
                 SizedBox(height: 10),
                 SignUpTextField(
-                  controller: widget.passwordController,
+                  controller: passwordController,
                   hintText: "Enter your password",
                   obscureText: true,
                 ),
                 SizedBox(height: 10),
                 SignUpTextField(
-                  controller: widget.confirmPasswordController,
+                  controller: confirmPasswordController,
                   hintText: "Confirm your password",
-                  obscureText: false,
+                  obscureText: true,
                 ),
                 SizedBox(height: 30.0),
                 Row(
@@ -116,20 +121,38 @@ class _SignUpPageState extends State<SignUpPage> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            color: Colors.black,
-                          ),
-                          height: 45,
-                          width: 180,
-                          child: Center(
-                            child: Text(
-                              "Create Account",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500,
+                        GestureDetector(
+                          onTap: () async {
+                            var signUp = await AuthService().signUpWithEmail(
+                                email: emailController.text,
+                                password: passwordController.text,
+                                name: nameController.text);
+                            print("signUp Value : $signUp");
+                            if (signUp == true) {
+                              await Future.delayed(Duration(seconds: 1));
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => HomePage(),
+                                ),
+                              );
+                            }
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: Colors.black,
+                            ),
+                            height: 45,
+                            width: 180,
+                            child: Center(
+                              child: Text(
+                                "Create Account",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
                           ),

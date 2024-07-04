@@ -1,24 +1,27 @@
 // ignore_for_file: sized_box_for_whitespace, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
+import 'package:smart_daigoku/auth/auth_service.dart';
 import 'package:smart_daigoku/components/login_textfield.dart';
 import 'package:smart_daigoku/components/google_button.dart';
 import 'package:smart_daigoku/pages/signup_page.dart';
 
+import 'home_page.dart';
+
 class LoginPage extends StatefulWidget {
   LoginPage({super.key, required void Function() onTapFunction});
-  final usernameController = TextEditingController();
-  final passwordController = TextEditingController();
-
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  // TextField Controllers
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 30, 210, 140),
+      backgroundColor: Color.fromARGB(255, 121, 201, 158),
       body: SafeArea(
         child: SingleChildScrollView(
           physics: NeverScrollableScrollPhysics(),
@@ -79,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: const EdgeInsets.only(left: 25.0, bottom: 8.0),
                   child: Text(
-                    "Username or Email",
+                    "Email",
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 17,
@@ -90,8 +93,8 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 LoginTextField(
-                    controller: widget.usernameController,
-                    hintText: "Enter Name",
+                    controller: _emailController,
+                    hintText: "Enter Email",
                     obscureText: false),
                 SizedBox(height: 22),
                 Padding(
@@ -125,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 LoginTextField(
-                    controller: widget.passwordController,
+                    controller: _passwordController,
                     hintText: "Enter Password",
                     obscureText: true),
                 SizedBox(
@@ -133,20 +136,37 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 30.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Colors.black,
-                    ),
-                    height: 45,
-                    width: 170,
-                    child: Center(
-                      child: Text(
-                        "Login",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w700,
+                  child: GestureDetector(
+                    onTap: () async {
+                      var signIn = await AuthService().loginWithEmail(
+                          email: _emailController.text,
+                          password: _passwordController.text);
+                      print("signIn Value : $signIn");
+                      if (signIn == true) {
+                        await Future.delayed(Duration(seconds: 1));
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomePage(),
+                          ),
+                        );
+                      }
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Colors.black,
+                      ),
+                      height: 45,
+                      width: 170,
+                      child: Center(
+                        child: Text(
+                          "Login",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
                       ),
                     ),
