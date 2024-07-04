@@ -3,9 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:smart_daigoku/components/login_textfield.dart';
 import 'package:smart_daigoku/components/google_button.dart';
+import 'package:smart_daigoku/pages/signup_page.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({super.key});
+  LoginPage({super.key, required void Function() onTapFunction});
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -66,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                     Expanded(
                       child: Divider(
                         color: Colors.black,
-                        thickness: 1.3,
+                        thickness: 1.5,
                         height: 10,
                         indent: 10,
                         endIndent: 10,
@@ -166,8 +167,14 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(
-                              context, '/signUp'); // Navigate to the LoginPage
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SignUpPage(
+                                onTapFunction: () {},
+                              ),
+                            ),
+                          ); // Navigate to the LoginPage
                         },
                         child: Text(
                           "Sign up",

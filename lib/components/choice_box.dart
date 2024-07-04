@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class ChoiceBox extends StatelessWidget {
   final String mainText;
+  final bool selected;
 
-  const ChoiceBox({super.key, required this.mainText});
+  const ChoiceBox({super.key, required this.mainText, this.selected = false});
 
   @override
   Widget build(BuildContext context) {
@@ -11,6 +12,10 @@ class ChoiceBox extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(50.0),
         color: Colors.white,
+        border: Border.all(
+          color: selected ? Colors.blue : Colors.transparent,
+          width: 2.0,
+        ),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.3), // Shadow color with opacity
@@ -26,7 +31,7 @@ class ChoiceBox extends StatelessWidget {
         child: Text(
           mainText,
           style: TextStyle(
-            color: Color.fromRGBO(0, 0, 0, 0.5),
+            color: selected ? Colors.blue : Color.fromRGBO(0, 0, 0, 0.5),
             fontSize: 22,
             fontWeight: FontWeight.w700,
           ),
