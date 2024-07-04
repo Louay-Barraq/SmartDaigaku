@@ -3,10 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:smart_daigoku/components/signup_textfield.dart';
 import 'package:smart_daigoku/components/google_button.dart';
+import 'package:smart_daigoku/pages/login_page.dart';
 
 class SignUpPage extends StatefulWidget {
-  SignUpPage({Key? key}) : super(key: key);
-
+  SignUpPage({super.key, required void Function() onTapFunction});
   final nameController = TextEditingController();
   final usernameController = TextEditingController();
   final emailController = TextEditingController();
@@ -51,8 +51,6 @@ class _SignUpPageState extends State<SignUpPage> {
 
                 // Or continue with Email
                 Row(
-                  crossAxisAlignment:
-                      CrossAxisAlignment.start, // Align content at the top
                   children: [
                     Expanded(
                       child: Divider(
@@ -63,13 +61,10 @@ class _SignUpPageState extends State<SignUpPage> {
                         endIndent: 10,
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Text(
-                        "Or continue With Email",
-                        style: TextStyle(
-                            fontSize: 17, fontWeight: FontWeight.bold),
-                      ),
+                    Text(
+                      "Or Sign up with Email",
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
                     Expanded(
                       child: Divider(
@@ -152,8 +147,14 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(
-                                context, '/login'); // Navigate to the LoginPage
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LoginPage(
+                                  onTapFunction: () {},
+                                ),
+                              ),
+                            ); // Navigate to the LoginPage
                           },
                           child: Padding(
                             padding: EdgeInsets.only(left: 68),
@@ -170,14 +171,12 @@ class _SignUpPageState extends State<SignUpPage> {
                       ],
                     ), // Add spacing between the column and the image
 
-                    Positioned(
-                      child: Align(
-                        alignment: Alignment.bottomRight,
-                        child: Image.asset(
-                          "assets/images/late_for_class.png",
-                          width: 150,
-                          height: 150,
-                        ),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: Image.asset(
+                        "assets/images/late_for_class.png",
+                        width: 150,
+                        height: 150,
                       ),
                     ),
                   ],

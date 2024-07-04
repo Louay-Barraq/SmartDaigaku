@@ -1,7 +1,6 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, avoid_unnecessary_containers
-
 import 'package:flutter/material.dart';
 import 'package:smart_daigoku/components/choice_box.dart';
+import 'package:smart_daigoku/pages/signup_page.dart';
 
 class InitialPage extends StatefulWidget {
   const InitialPage({super.key});
@@ -11,8 +10,28 @@ class InitialPage extends StatefulWidget {
 }
 
 class _InitialPageState extends State<InitialPage> {
+  String userType = "";
+  String warningMessage = "";
+
+  void displayWarning() {
+    setState(() {
+      warningMessage = "! : Please select one of the 3 choices";
+    });
+  }
+
+  void removeWarning() {
+    setState(() {
+      warningMessage = "";
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double imageHeight = 180;
+    double imageWidth = 180;
+
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 30, 210, 140),
       body: SafeArea(
@@ -42,21 +61,76 @@ class _InitialPageState extends State<InitialPage> {
                         fontSize: 20,
                       ),
                     ),
-                    SizedBox(height: 40),
+                    SizedBox(height: 10),
+                    Text(
+                      warningMessage,
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    )
                   ],
                 ),
                 Center(
                   child: Column(
                     children: [
-                      ChoiceBox(mainText: "Student"),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            userType = "Student";
+                            removeWarning();
+                          });
+                        },
+                        child: ChoiceBox(
+                          mainText: "Student",
+                          selected: userType == "Student",
+                        ),
+                      ),
                       SizedBox(height: 25),
-                      ChoiceBox(mainText: "Professor"),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            userType = "Professor";
+                            removeWarning();
+                          });
+                        },
+                        child: ChoiceBox(
+                          mainText: "Professor",
+                          selected: userType == "Professor",
+                        ),
+                      ),
                       SizedBox(height: 25),
-                      ChoiceBox(mainText: "Academic Staff Member"),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            userType = "Academic Staff Member";
+                            removeWarning();
+                          });
+                        },
+                        child: ChoiceBox(
+                          mainText: "Academic Staff Member",
+                          selected: userType == "Academic Staff Member",
+                        ),
+                      ),
                       SizedBox(height: 35),
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(context, '/signUp');
+                          if (userType.isNotEmpty) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SignUpPage(
+                                  onTapFunction: () {},
+                                ),
+                              ),
+                            );
+                          } else {
+                            displayWarning();
+                          }
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -92,7 +166,11 @@ class _InitialPageState extends State<InitialPage> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                Navigator.pushNamed(context, '/login');
+                                if (userType.isNotEmpty) {
+                                  Navigator.pushNamed(context, '/login');
+                                } else {
+                                  displayWarning();
+                                }
                               },
                               child: Text(
                                 "Login",
@@ -106,17 +184,16 @@ class _InitialPageState extends State<InitialPage> {
                           ],
                         ),
                       ),
-                      Positioned(
-                        child: Align(
-                          alignment: Alignment.bottomRight,
-                          child: Image.asset(
-                            "assets/images/new_beginnings.png",
-                            width: 180,
-                            height: 180,
-                          ),
-                        ),
-                      ),
                     ],
+                  ),
+                ),
+                SizedBox(height: 5),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Image.asset(
+                    "assets/images/new_beginnings.png",
+                    width: 180,
+                    height: 180,
                   ),
                 ),
               ],
