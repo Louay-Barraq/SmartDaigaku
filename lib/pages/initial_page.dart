@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:smart_daigoku/components/choice_box.dart';
 import 'package:smart_daigoku/pages/signup_page.dart';

@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable, unused_import
+
 import 'dart:ffi';
 
 import 'package:firebase_auth/firebase_auth.dart';
