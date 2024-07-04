@@ -33,7 +33,7 @@ class _InitialPageState extends State<InitialPage> {
     double imageWidth = 180;
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 30, 210, 140),
+      backgroundColor: Color.fromARGB(255, 121, 201, 158),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -189,11 +189,11 @@ class _InitialPageState extends State<InitialPage> {
                 ),
                 SizedBox(height: 5),
                 Align(
-                  alignment: Alignment.bottomRight,
+                  alignment: Alignment.bottomCenter,
                   child: Image.asset(
                     "assets/images/new_beginnings.png",
-                    width: 180,
-                    height: 180,
+                    width: screenWidth,
+                    height: 375,
                   ),
                 ),
               ],
