@@ -38,14 +38,14 @@ class UserProfileCard extends StatelessWidget {
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w600,
-                    fontSize: 20),
+                    fontSize: 17),
               ),
               Text(
                 email,
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w400,
-                    fontSize: 14),
+                    fontSize: 13),
               ),
             ],
           ),

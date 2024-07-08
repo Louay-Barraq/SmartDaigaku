@@ -39,7 +39,7 @@ class _MyDrawerState extends State<MyDrawer> {
                     'Smart',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 35,
+                      fontSize: 28,
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w700,
                     ),
@@ -48,7 +48,7 @@ class _MyDrawerState extends State<MyDrawer> {
                     'Daigoku',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 35,
+                      fontSize: 28,
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w300,
                     ),

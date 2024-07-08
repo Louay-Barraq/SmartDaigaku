@@ -61,7 +61,7 @@ class _ThemeToggleState extends State<ThemeToggle> {
                     "Light",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.w700,
                     ),
                   )
@@ -95,7 +95,7 @@ class _ThemeToggleState extends State<ThemeToggle> {
                     "Dark",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.w700,
                     ),
                   )

@@ -47,8 +47,8 @@ class _DrawerElementState extends State<DrawerElement> {
               widget.elementTitle,
               style: TextStyle(
                   color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500),
+                  fontSize: 17,
+                  fontWeight: FontWeight.w700),
             ),
           ],
         ),
