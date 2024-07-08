@@ -44,7 +44,10 @@ class SignUpTextField extends StatelessWidget {
                 borderSide: BorderSide(color: Colors.grey),
                 borderRadius: BorderRadius.circular(50)),
             hintText: hintText,
-            fillColor: Colors.grey[200],
+            hintStyle: TextStyle(
+              color: Color(0x7F000000),
+            ),
+            fillColor: Colors.white,
             filled: true,
           ),
         ),

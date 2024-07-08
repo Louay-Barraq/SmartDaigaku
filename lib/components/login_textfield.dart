@@ -45,6 +45,9 @@ class LoginTextField extends StatelessWidget {
                 borderSide: BorderSide(color: Colors.grey),
                 borderRadius: BorderRadius.circular(50)),
             hintText: hintText,
+            hintStyle: TextStyle(
+              color: Color(0x7F000000),
+            ),
             fillColor: Colors.white,
             filled: true,
           ),
