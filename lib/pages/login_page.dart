@@ -1,7 +1,9 @@
-// ignore_for_file: sized_box_for_whitespace, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers
+// ignore_for_file: sized_box_for_whitespace, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, use_build_context_synchronously, avoid_print
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:smart_daigoku/auth/auth_service.dart';
 import 'package:smart_daigoku/components/login_textfield.dart';
 import 'package:smart_daigoku/components/google_button.dart';
 import 'package:smart_daigoku/pages/signup_page.dart';
@@ -9,7 +11,7 @@ import 'package:smart_daigoku/pages/signup_page.dart';
 import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({super.key, required void Function() onTapFunction});
+  const LoginPage({super.key, required void Function() onTapFunction});
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
