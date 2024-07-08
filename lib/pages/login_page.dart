@@ -1,13 +1,12 @@
 // ignore_for_file: sized_box_for_whitespace, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, use_build_context_synchronously, avoid_print
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:smart_daigoku/auth/auth_service.dart';
 import 'package:smart_daigoku/components/login_textfield.dart';
 import 'package:smart_daigoku/components/google_button.dart';
 import 'package:smart_daigoku/pages/signup_page.dart';
-
+import '../auth/auth_service.dart';
 import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -20,46 +19,39 @@ class _LoginPageState extends State<LoginPage> {
   // TextField Controllers
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final FirebaseAuth auth = FirebaseAuth.instance;
-  User? user;
 
-  @override
-  void initState() {
-    super.initState();
-    auth.authStateChanges().listen((User? user) {
-      setState(() {
-        this.user = user;
-      });
-    });
+  void signInWithGoogle() async {
+    var userCredential = await AuthService().signInWithGoogle();
+    if (userCredential != null) {
+      await Future.delayed(Duration(seconds: 1));
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomePage(),
+        ),
+      );
+    }
   }
 
-  Future<void> googleSignIn() async {
-    try {
-      final GoogleSignIn googleSignIn = GoogleSignIn();
-      final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
-      if (googleUser == null) {
-        // The user canceled the sign-in
-        return;
-      }
-
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
-      final OAuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
+  void signInWithEmailAndPwd() async {
+    var userCredential = await AuthService().loginWithEmail(
+        email: _emailController.text, password: _passwordController.text);
+    print("signIn Value : $userCredential");
+    if (userCredential != null) {
+      await Future.delayed(Duration(seconds: 1));
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomePage(),
+        ),
       );
-
-      // Sign in to Firebase with the Google [UserCredential]
-      await auth.signInWithCredential(credential);
-    } catch (e) {
-      print(e);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 121, 201, 158),
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
         child: SingleChildScrollView(
           physics: NeverScrollableScrollPhysics(),
@@ -83,7 +75,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 GoogleButton(
-                  onTap: googleSignIn,
+                  onTap: () {
+                    signInWithGoogle();
+                  },
                   childText: "Login with Google",
                 ),
                 SizedBox(
@@ -93,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     Expanded(
                       child: Divider(
-                        color: Colors.black,
+                        color: Theme.of(context).colorScheme.tertiary,
                         thickness: 1.5,
                         height: 10,
                         indent: 10,
@@ -102,12 +96,15 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     Text(
                       "Or Login with Email",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Theme.of(context).colorScheme.tertiary,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     Expanded(
                       child: Divider(
-                        color: Colors.black,
+                        color: Theme.of(context).colorScheme.tertiary,
                         thickness: 1.5,
                         height: 10,
                         indent: 10,
@@ -122,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Text(
                     "Email",
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Theme.of(context).colorScheme.tertiary,
                       fontSize: 17,
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w700,
@@ -144,7 +141,7 @@ class _LoginPageState extends State<LoginPage> {
                       Text(
                         "Password",
                         style: TextStyle(
-                          color: Colors.black,
+                          color: Theme.of(context).colorScheme.tertiary,
                           fontSize: 17,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w700,
@@ -155,7 +152,7 @@ class _LoginPageState extends State<LoginPage> {
                         child: Text(
                           "Forgot?",
                           style: TextStyle(
-                            color: Colors.black,
+                            color: Theme.of(context).colorScheme.tertiary,
                             fontSize: 15,
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.w300,
@@ -175,25 +172,13 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: const EdgeInsets.only(left: 30.0),
                   child: GestureDetector(
-                    onTap: () async {
-                      var signIn = await AuthService().loginWithEmail(
-                          email: _emailController.text,
-                          password: _passwordController.text);
-                      print("signIn Value : $signIn");
-                      if (signIn == true) {
-                        await Future.delayed(Duration(seconds: 1));
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => HomePage(),
-                          ),
-                        );
-                      }
+                    onTap: () {
+                      signInWithEmailAndPwd();
                     },
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
-                        color: Colors.black,
+                        color: Theme.of(context).colorScheme.secondary,
                       ),
                       height: 45,
                       width: 170,
@@ -201,7 +186,7 @@ class _LoginPageState extends State<LoginPage> {
                         child: Text(
                           "Login",
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Theme.of(context).colorScheme.onTertiary,
                             fontSize: 15,
                             fontWeight: FontWeight.w700,
                           ),
@@ -246,14 +231,12 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                 ),
-                Positioned(
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: Image.asset(
-                      "assets/images/reflecting.png",
-                      width: 300,
-                      height: 300,
-                    ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Image.asset(
+                    "assets/images/reflecting.png",
+                    width: 300,
+                    height: 300,
                   ),
                 ),
               ],

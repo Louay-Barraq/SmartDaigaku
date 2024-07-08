@@ -1,7 +1,9 @@
 // ignore_for_file: unused_local_variable
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:smart_daigoku/components/choice_box.dart';
+import 'package:smart_daigoku/pages/login_page.dart';
 import 'package:smart_daigoku/pages/signup_page.dart';
 
 class InitialPage extends StatefulWidget {
@@ -17,7 +19,15 @@ class _InitialPageState extends State<InitialPage> {
 
   void displayWarning() {
     setState(() {
-      warningMessage = "! : Please select one of the 3 choices";
+      warningMessage = "Please select one of the 3 choices.";
+      Fluttertoast.showToast(
+        msg: warningMessage,
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.SNACKBAR,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 15.0,
+      );
     });
   }
 
@@ -35,7 +45,7 @@ class _InitialPageState extends State<InitialPage> {
     double imageWidth = 180;
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 121, 201, 158),
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -49,7 +59,7 @@ class _InitialPageState extends State<InitialPage> {
                     Text(
                       "Welcome To\nSmartDaigoku",
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.primary,
                         fontWeight: FontWeight.w700,
                         fontSize: 40,
                       ),
@@ -58,20 +68,20 @@ class _InitialPageState extends State<InitialPage> {
                     Text(
                       "Improving Your Experience Is Our\nResponsibility",
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Theme.of(context).colorScheme.onSecondary,
                         fontWeight: FontWeight.w700,
                         fontSize: 20,
                       ),
                     ),
                     SizedBox(height: 10),
-                    Text(
-                      warningMessage,
-                      style: TextStyle(
-                        color: Colors.red,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
+                    /*Text(
+                        warningMessage,
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),*/
                     SizedBox(
                       height: 10,
                     )
@@ -137,7 +147,7 @@ class _InitialPageState extends State<InitialPage> {
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20.0),
-                            color: Colors.black,
+                            color: Theme.of(context).colorScheme.secondary,
                           ),
                           height: 52,
                           width: 260,
@@ -145,7 +155,7 @@ class _InitialPageState extends State<InitialPage> {
                             child: Text(
                               "Sign Up",
                               style: TextStyle(
-                                color: Colors.white,
+                                color: Theme.of(context).colorScheme.onTertiary,
                                 fontSize: 20,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -161,7 +171,7 @@ class _InitialPageState extends State<InitialPage> {
                             Text(
                               "Already have an account ? ",
                               style: TextStyle(
-                                color: Colors.white,
+                                color: Theme.of(context).colorScheme.primary,
                                 fontSize: 17,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -169,7 +179,14 @@ class _InitialPageState extends State<InitialPage> {
                             GestureDetector(
                               onTap: () {
                                 if (userType.isNotEmpty) {
-                                  Navigator.pushNamed(context, '/login');
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => LoginPage(
+                                        onTapFunction: () {},
+                                      ),
+                                    ),
+                                  );
                                 } else {
                                   displayWarning();
                                 }
@@ -177,7 +194,8 @@ class _InitialPageState extends State<InitialPage> {
                               child: Text(
                                 "Login",
                                 style: TextStyle(
-                                  color: Colors.black,
+                                  color:
+                                      Theme.of(context).colorScheme.onSecondary,
                                   fontSize: 17,
                                   fontWeight: FontWeight.w700,
                                 ),
