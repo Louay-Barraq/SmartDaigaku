@@ -1,12 +1,10 @@
 // ignore_for_file: sized_box_for_whitespace, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, use_build_context_synchronously, avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:smart_daigoku/auth/auth_service.dart';
 import 'package:smart_daigoku/components/login_textfield.dart';
 import 'package:smart_daigoku/components/google_button.dart';
 import 'package:smart_daigoku/pages/signup_page.dart';
-import '../auth/auth_service.dart';
 import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
