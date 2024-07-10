@@ -27,9 +27,10 @@ class _ThemeToggleState extends State<ThemeToggle> {
       padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
       margin: EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
-          color: Color(0xFF087E3E), // Background color
+          color: Color.fromARGB(255, 255, 255, 255), // Background color
           borderRadius: BorderRadius.circular(50),
-          border: Border.all(color: Colors.white, width: 1)),
+          border: Border.all(
+              color: Theme.of(context).colorScheme.secondary, width: 1)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -41,8 +42,8 @@ class _ThemeToggleState extends State<ThemeToggle> {
               padding: EdgeInsets.all(8.0),
               decoration: BoxDecoration(
                 color: !_isDarkTheme
-                    ? Color.fromARGB(255, 2, 22, 68)
-                    : Color(0xFF087E3E),
+                    ? Theme.of(context).colorScheme.secondary
+                    : Colors.transparent,
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.circular(50),
               ),
@@ -51,7 +52,9 @@ class _ThemeToggleState extends State<ThemeToggle> {
                 children: [
                   Icon(
                     Icons.wb_sunny,
-                    color: Colors.white,
+                    color: !_isDarkTheme
+                        ? Colors.white
+                        : Theme.of(context).colorScheme.secondary,
                     size: 25,
                   ),
                   SizedBox(
@@ -60,7 +63,9 @@ class _ThemeToggleState extends State<ThemeToggle> {
                   Text(
                     "Light",
                     style: TextStyle(
-                      color: Colors.white,
+                      color: !_isDarkTheme
+                          ? Colors.white
+                          : Theme.of(context).colorScheme.secondary,
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
                     ),
@@ -78,8 +83,8 @@ class _ThemeToggleState extends State<ThemeToggle> {
               padding: EdgeInsets.all(8.0),
               decoration: BoxDecoration(
                 color: _isDarkTheme
-                    ? Color.fromARGB(255, 2, 22, 68)
-                    : Color(0xFF087E3E),
+                    ? Theme.of(context).colorScheme.secondary
+                    : Colors.transparent,
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.circular(50),
               ),
@@ -88,13 +93,17 @@ class _ThemeToggleState extends State<ThemeToggle> {
                 children: [
                   Icon(
                     Icons.nightlight_round,
-                    color: Colors.white,
+                    color: !_isDarkTheme
+                        ? Theme.of(context).colorScheme.secondary
+                        : Colors.white,
                     size: 25,
                   ),
                   Text(
                     "Dark",
                     style: TextStyle(
-                      color: Colors.white,
+                      color: !_isDarkTheme
+                          ? Theme.of(context).colorScheme.secondary
+                          : Colors.white,
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
                     ),

@@ -8,6 +8,8 @@ import 'package:smart_daigoku/pages/signup_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:smart_daigoku/themes/dark_theme.dart';
 import 'package:smart_daigoku/themes/light_theme.dart';
+import 'package:smart_daigoku/themes/purple_dark_theme.dart';
+import 'package:smart_daigoku/themes/purple_light_theme.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: darkTheme,
+      theme: lightPurpleTheme,
       debugShowCheckedModeBanner: false,
       home: WelcomeScreen(),
     );
@@ -33,6 +35,6 @@ class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    return HomePage();
+    return InitialPage();
   }
 }
