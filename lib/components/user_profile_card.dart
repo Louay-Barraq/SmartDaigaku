@@ -2,25 +2,30 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_daigoku/pages/settings_page.dart';
 
 class UserProfileCard extends StatelessWidget {
-  final user = FirebaseAuth.instance.currentUser;
-  final String name;
-  final String email;
-  final String profileImageUrl; // Replace with actual image URL
+  final User? user = FirebaseAuth.instance.currentUser;
+  UserProfileCard({Key? key});
 
-  UserProfileCard({
-    required this.name,
-    required this.email,
-    required this.profileImageUrl,
-  });
+  static dynamic _getUserImagePath(User? user) {
+    if (user != null && user.photoURL != null) {
+      return NetworkImage(user.photoURL!);
+    } else {
+      return AssetImage("assets/images/profile_picture.png");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    // print("Username: ${user?.displayName}");
+    // print("Email: ${user?.email}");
+    // print("photoURL: ${user?.photoURL}");
+
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(
-          color: Colors.white, // Background color
+          color: Theme.of(context).colorScheme.secondary,
           borderRadius: BorderRadius.circular(140),
           border: Border.all(
               color: Theme.of(context).colorScheme.secondary, width: 1)),
@@ -28,23 +33,23 @@ class UserProfileCard extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 25,
-            backgroundImage: NetworkImage(user!.photoURL!),
+            backgroundImage: _getUserImagePath(user),
           ),
           SizedBox(width: 10),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                user!.displayName!,
+                user?.displayName ?? "Name",
                 style: TextStyle(
-                    color: Theme.of(context).colorScheme.secondary,
+                    color: Theme.of(context).colorScheme.inversePrimary,
                     fontWeight: FontWeight.w600,
                     fontSize: 17),
               ),
               Text(
-                user!.email!,
+                user?.email ?? "Email",
                 style: TextStyle(
-                    color: Theme.of(context).colorScheme.secondary,
+                    color: Theme.of(context).colorScheme.inversePrimary,
                     fontWeight: FontWeight.w400,
                     fontSize: 13),
               ),
@@ -53,8 +58,8 @@ class UserProfileCard extends StatelessWidget {
           Spacer(),
           GestureDetector(
             child: Icon(
-              Icons.logout, // Replace with gear icon or any other relevant icon
-              color: Theme.of(context).colorScheme.secondary,
+              Icons.settings_rounded,
+              color: Theme.of(context).colorScheme.inversePrimary,
               size: 30,
             ),
             onTap: () {},
@@ -63,21 +68,4 @@ class UserProfileCard extends StatelessWidget {
       ),
     );
   }
-}
-
-// Example usage:
-void main() {
-  runApp(MaterialApp(
-    home: Scaffold(
-      appBar: AppBar(title: Text('User Profile Example')),
-      body: Center(
-        child: UserProfileCard(
-          name: 'Jhon Doe',
-          email: 'jhondoe100@gmail.com',
-          profileImageUrl:
-              'https://example.com/profile.jpg', // Replace with actual image URL
-        ),
-      ),
-    ),
-  ));
 }
