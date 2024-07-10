@@ -41,7 +41,7 @@ dependencies:
   fluttertoast: ^8.2.6
   google_sign_in: ^6.2.1
   cloud_firestore: ^5.0.2
-  provider: ^6.0.2
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +72,7 @@ flutter:
    - assets/images/growth.png
    - assets/images/late_for_class.png
    - assets/images/reflecting.png
+   - assets/images/profile_picture.png
 
 
   # fonts:
