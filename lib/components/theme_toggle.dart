@@ -1,49 +1,42 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:smart_daigoku/themes/theme_provider.dart';
 
 class ThemeToggle extends StatefulWidget {
-  final Function(bool) onThemeChanged;
-
-  const ThemeToggle({super.key, required this.onThemeChanged});
+  const ThemeToggle({super.key});
 
   @override
   _ThemeToggleState createState() => _ThemeToggleState();
 }
 
 class _ThemeToggleState extends State<ThemeToggle> {
-  bool _isDarkTheme = false;
-
-  void _toggleTheme(bool isDark) {
-    setState(() {
-      _isDarkTheme = isDark;
-      widget.onThemeChanged(_isDarkTheme);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
       margin: EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
-          color: Color.fromARGB(255, 255, 255, 255), // Background color
-          borderRadius: BorderRadius.circular(50),
-          border: Border.all(
-              color: Theme.of(context).colorScheme.secondary, width: 1)),
+        color: Theme.of(context).colorScheme.secondary,
+        borderRadius: BorderRadius.circular(50),
+        border: Border.all(color: Colors.white, width: 1),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           GestureDetector(
-            onTap: () => _toggleTheme(false),
+            onTap: () => Provider.of<ThemeProvider>(context, listen: false)
+                .toggleTheme(),
             child: Container(
               width: 130,
               height: 45,
               padding: EdgeInsets.all(8.0),
               decoration: BoxDecoration(
-                color: !_isDarkTheme
-                    ? Theme.of(context).colorScheme.secondary
-                    : Colors.transparent,
+                color: Provider.of<ThemeProvider>(context, listen: false)
+                        .isDarkMode
+                    ? Colors.transparent
+                    : Colors.black,
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.circular(50),
               ),
@@ -52,38 +45,40 @@ class _ThemeToggleState extends State<ThemeToggle> {
                 children: [
                   Icon(
                     Icons.wb_sunny,
-                    color: !_isDarkTheme
+                    color: Provider.of<ThemeProvider>(context, listen: false)
+                            .isDarkMode
                         ? Colors.white
                         : Theme.of(context).colorScheme.secondary,
                     size: 25,
                   ),
-                  SizedBox(
-                    width: 10,
-                  ),
+                  SizedBox(width: 10),
                   Text(
                     "Light",
                     style: TextStyle(
-                      color: !_isDarkTheme
+                      color: Provider.of<ThemeProvider>(context, listen: false)
+                              .isDarkMode
                           ? Colors.white
                           : Theme.of(context).colorScheme.secondary,
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
           ),
-          SizedBox(width: 10), // Add spacing between buttons
+          SizedBox(width: 10),
           GestureDetector(
-            onTap: () => _toggleTheme(true),
+            onTap: () => Provider.of<ThemeProvider>(context, listen: false)
+                .toggleTheme(),
             child: Container(
               width: 130,
               height: 45,
               padding: EdgeInsets.all(8.0),
               decoration: BoxDecoration(
-                color: _isDarkTheme
-                    ? Theme.of(context).colorScheme.secondary
+                color: Provider.of<ThemeProvider>(context, listen: false)
+                        .isDarkMode
+                    ? Colors.black
                     : Colors.transparent,
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.circular(50),
@@ -93,21 +88,23 @@ class _ThemeToggleState extends State<ThemeToggle> {
                 children: [
                   Icon(
                     Icons.nightlight_round,
-                    color: !_isDarkTheme
-                        ? Theme.of(context).colorScheme.secondary
-                        : Colors.white,
+                    color: Provider.of<ThemeProvider>(context, listen: false)
+                            .isDarkMode
+                        ? Colors.white
+                        : Colors.black,
                     size: 25,
                   ),
                   Text(
                     "Dark",
                     style: TextStyle(
-                      color: !_isDarkTheme
-                          ? Theme.of(context).colorScheme.secondary
-                          : Colors.white,
+                      color: Provider.of<ThemeProvider>(context, listen: false)
+                              .isDarkMode
+                          ? Colors.white
+                          : Colors.black,
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

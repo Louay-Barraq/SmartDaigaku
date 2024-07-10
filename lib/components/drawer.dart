@@ -1,21 +1,47 @@
-// ignore_for_file: avoid_unnecessary_containers, library_private_types_in_public_api, unused_field, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors, avoid_types_as_parameter_names
+// ignore_for_file: avoid_unnecessary_containers, library_private_types_in_public_api, unused_field, prefer_const_literals_to_create_immutables
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_daigoku/components/drawer_element.dart';
 import 'package:smart_daigoku/components/theme_toggle.dart';
 import 'package:smart_daigoku/components/user_profile_card.dart';
-import 'package:smart_daigoku/pages/cafeteria_page.dart';
-import 'package:smart_daigoku/pages/classroom_page.dart';
-import 'package:smart_daigoku/pages/overall_page.dart';
-import 'package:smart_daigoku/pages/settings_page.dart';
+import 'package:smart_daigoku/pages/home_page.dart';
+import '../pages/cafeteria_page.dart';
+import '../pages/classroom_page.dart';
+import '../pages/overall_page.dart';
+import '../pages/settings_page.dart';
 
 class AppDrawer extends StatefulWidget {
+  final String currentPage;
+  const AppDrawer({required this.currentPage, super.key});
+
   @override
   _AppDrawerState createState() => _AppDrawerState();
 }
 
 class _AppDrawerState extends State<AppDrawer> {
-  String _selectedElement = '';
+  late String _selectedElement;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedElement = widget.currentPage;
+  }
+
+  final user = FirebaseAuth.instance.currentUser;
+
+  void _navigateTo(String element, Widget page) {
+    setState(() {
+      _selectedElement = element;
+    });
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => page,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -24,10 +50,7 @@ class _AppDrawerState extends State<AppDrawer> {
         children: [
           Column(
             children: [
-              Padding(
-                  padding: EdgeInsets.only(
-                top: 30,
-              )),
+              Padding(padding: EdgeInsets.only(top: 30)),
               Icon(
                 Icons.school,
                 color: Theme.of(context).colorScheme.tertiary,
@@ -58,77 +81,51 @@ class _AppDrawerState extends State<AppDrawer> {
               ),
             ],
           ),
-          SizedBox(height: 40),
+          SizedBox(height: 20),
+          DrawerElement(
+            elementTitle: "Home",
+            icon: Icons.home,
+            isSelected: _selectedElement == 'Home',
+            onTap: () => _navigateTo('Home',
+                HomePage()), // Replace ClassroomPage with the actual page
+          ),
+          SizedBox(height: 10),
           DrawerElement(
             elementTitle: "Classroom",
             icon: Icons.people,
             isSelected: _selectedElement == 'Classroom',
-            onTap: () {
-              setState(() {
-                _selectedElement = 'Classroom';
-              });
-              Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ClassroomPage()));
-            },
+            onTap: () => _navigateTo('Classroom',
+                ClassroomPage()), // Replace ClassroomPage with the actual page
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
           DrawerElement(
             elementTitle: "Cafeteria",
             icon: Icons.local_cafe,
             isSelected: _selectedElement == 'Cafeteria',
-            onTap: () {
-              setState(() {
-                _selectedElement = 'Cafeteria';
-              });
-              Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => CafeteriaPage()));
-            },
+            onTap: () => _navigateTo('Cafeteria', CafeteriaPage()),
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
           DrawerElement(
             elementTitle: "Overall",
             icon: Icons.notifications,
             isSelected: _selectedElement == 'Overall',
-            onTap: () {
-              setState(() {
-                _selectedElement = 'Overall';
-              });
-              Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => OverallPage()));
-            },
+            onTap: () => _navigateTo('Overall',
+                OverallPage()), // Replace OverallPage with the actual page
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
           DrawerElement(
             elementTitle: "Settings",
             icon: Icons.settings,
             isSelected: _selectedElement == 'Settings',
-            onTap: () {
-              setState(() {
-                _selectedElement = 'Overall';
-              });
-              Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SettingsPage()));
-            },
+            onTap: () => _navigateTo('Settings',
+                SettingsPage()), // Replace SettingsPage with the actual page
           ),
           Spacer(),
-          ThemeToggle(
-            onThemeChanged: (bool) {},
-          ),
+          ThemeToggle(),
           Container(
-            padding: EdgeInsets.symmetric(
-              vertical: 20,
-            ),
+            padding: EdgeInsets.symmetric(vertical: 20),
             margin: EdgeInsets.symmetric(horizontal: 8),
-            child: UserProfileCard(
-              name: 'Jhon Doe',
-              email: 'jhondoe100@gmail.com',
-              profileImageUrl:
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaMrKpFCdbgQ3D1Nm9HMnJDdESq8GxBXIUmw&s',
-            ),
+            child: UserProfileCard(),
           ),
         ],
       ),
