@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_daigoku/components/drawer.dart';
 
 class CafeteriaPage extends StatefulWidget {
   const CafeteriaPage({super.key});
@@ -8,6 +9,7 @@ class CafeteriaPage extends StatefulWidget {
 }
 
 class _CafeteriaPageState extends State<CafeteriaPage> {
+  String _currentPage = 'Cafeteria';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,6 +22,7 @@ class _CafeteriaPageState extends State<CafeteriaPage> {
           child: Text('Cafeteria Page'),
         ),
       ),
+      drawer: AppDrawer(currentPage: _currentPage),
     );
   }
 }

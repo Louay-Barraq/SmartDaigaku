@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../components/drawer.dart';
+
 class OverallPage extends StatefulWidget {
   const OverallPage({super.key});
 
@@ -8,6 +10,7 @@ class OverallPage extends StatefulWidget {
 }
 
 class _OverallPageState extends State<OverallPage> {
+  String _currentPage = 'Overall';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,6 +23,7 @@ class _OverallPageState extends State<OverallPage> {
           child: Text('Overall Page'),
         ),
       ),
+      drawer: AppDrawer(currentPage: _currentPage),
     );
   }
 }

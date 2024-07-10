@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_daigoku/components/drawer.dart';
 
@@ -9,25 +10,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  String _currentPage = 'Home';
+
+  void logout() {
+    FirebaseAuth.instance.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surface,
-      key: _scaffoldKey,
+      backgroundColor: Theme.of(context).colorScheme.primary,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.secondary,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         title: Text('Drawer Example'),
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          onPressed: () {
-            _scaffoldKey.currentState!.openDrawer();
-          },
-        ),
       ),
-      drawer: AppDrawer(), // Your custom drawer component
+      drawer: AppDrawer(currentPage: _currentPage),
       body: Center(
-        child: Text('test'),
+        child: ElevatedButton(
+          onPressed: logout,
+          child: Text("Logout"),
+        ),
       ),
     );
   }
