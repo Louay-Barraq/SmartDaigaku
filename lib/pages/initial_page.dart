@@ -135,9 +135,8 @@ class _InitialPageState extends State<InitialPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => SignUpPage(
-                                  onTapFunction: () {},
-                                ),
+                                builder: (context) =>
+                                    SignUpPage(onTapFunction: () {}),
                               ),
                             );
                           } else {

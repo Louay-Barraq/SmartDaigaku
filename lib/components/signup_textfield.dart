@@ -35,6 +35,9 @@ class SignUpTextField extends StatelessWidget {
         child: TextField(
           controller: controller,
           obscureText: obscureText,
+          style: TextStyle(
+            color: Colors.black,
+          ),
           decoration: InputDecoration(
             contentPadding: EdgeInsets.only(left: 20.0),
             enabledBorder: OutlineInputBorder(
