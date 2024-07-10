@@ -12,6 +12,16 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      appBar: AppBar(
+        title: Text('Settings Page'),
+      ),
+      body: SafeArea(
+        child: Center(
+          child: Text('Settings Page'),
+        ),
+      ),
+    );
   }
 }
