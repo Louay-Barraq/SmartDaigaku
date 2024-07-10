@@ -5,14 +5,12 @@ import 'package:flutter/material.dart';
 class DrawerElement extends StatefulWidget {
   final String elementTitle;
   final IconData icon;
-  final Color iconColor;
   final bool isSelected;
   final VoidCallback onTap;
 
   const DrawerElement({
     required this.elementTitle,
     required this.icon,
-    required this.iconColor,
     required this.isSelected,
     required this.onTap,
     Key? key,
@@ -32,21 +30,23 @@ class _DrawerElementState extends State<DrawerElement> {
         padding: EdgeInsets.symmetric(vertical: 20, horizontal: 25),
         margin: EdgeInsets.symmetric(horizontal: 5),
         decoration: BoxDecoration(
-          color: widget.isSelected ? Color(0xFF087E3E) : Colors.transparent,
+          color: widget.isSelected
+              ? Theme.of(context).colorScheme.secondary
+              : Colors.transparent,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(
           children: [
             Icon(
               widget.icon,
-              color: widget.iconColor,
+              color: Theme.of(context).colorScheme.tertiary,
               size: 30,
             ),
             SizedBox(width: 20),
             Text(
               widget.elementTitle,
               style: TextStyle(
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.tertiary,
                   fontSize: 17,
                   fontWeight: FontWeight.w700),
             ),
