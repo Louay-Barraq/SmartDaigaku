@@ -41,8 +41,6 @@ class _InitialPageState extends State<InitialPage> {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
-    double imageHeight = 180;
-    double imageWidth = 180;
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
@@ -136,7 +134,7 @@ class _InitialPageState extends State<InitialPage> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>
-                                    SignUpPage(onTapFunction: () {}),
+                                    SignUpPage(userType: userType),
                               ),
                             );
                           } else {
@@ -155,8 +153,8 @@ class _InitialPageState extends State<InitialPage> {
                               "Sign Up",
                               style: TextStyle(
                                 color: Theme.of(context)
-                                    .colorScheme
-                                    .inversePrimary,
+                                    .cardTheme
+                                    .surfaceTintColor,
                                 fontSize: 20,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -183,9 +181,8 @@ class _InitialPageState extends State<InitialPage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => LoginPage(
-                                        onTapFunction: () {},
-                                      ),
+                                      builder: (context) =>
+                                          LoginPage(userType: userType),
                                     ),
                                   );
                                 } else {
