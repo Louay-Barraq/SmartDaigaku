@@ -73,6 +73,7 @@ flutter:
    - assets/images/late_for_class.png
    - assets/images/reflecting.png
    - assets/images/profile_picture.png
+   - assets/images/color_wheel.png
 
 
   # fonts:
