@@ -1,50 +1,44 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, unused_field
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:smart_daigoku/auth/auth_service.dart';
-import 'package:smart_daigoku/components/signup_textfield.dart';
 import 'package:smart_daigoku/components/google_button.dart';
-import 'package:smart_daigoku/pages/home_page.dart';
+import 'package:smart_daigoku/components/signup_textfield.dart';
+import 'package:smart_daigoku/pages/initial_page.dart';
 import 'package:smart_daigoku/pages/login_page.dart';
+import 'package:smart_daigoku/pages/home_page.dart';
 
 class SignUpPage extends StatefulWidget {
-  final VoidCallback onTapFunction;
+  final String userType;
+  const SignUpPage({super.key, required this.userType});
 
-  SignUpPage({Key? key, required this.onTapFunction}) : super(key: key);
-
-  // SignUpPage({super.key, required void Function() onTapFunction});
   @override
   State<SignUpPage> createState() => _SignUpPageState();
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  // TextField Controllers
-  final nameController = TextEditingController();
-  final usernameController = TextEditingController();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final confirmPasswordController = TextEditingController();
+  final _usernameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
 
-  void signInWithGoogle() async {
-    try {
-      var userCredential = await AuthService().signInWithGoogle();
-      if (userCredential != null) {
-        await Future.delayed(Duration(seconds: 1));
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => HomePage(),
-          ),
-        );
-      }
-    } catch (e) {
-      print('Error during Google sign-in: $e');
+  void registerWithGoogle() async {
+    var userCredential =
+        await AuthService().signInWithGoogle(selectedType: widget.userType);
+    if (userCredential != null) {
+      await Future.delayed(Duration(seconds: 1));
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomePage(),
+        ),
+      );
     }
   }
 
   void signUpWithEmailAndPwd() async {
-    if (passwordController.text != confirmPasswordController.text) {
+    if (_passwordController.text != _confirmPasswordController.text) {
       Fluttertoast.showToast(
         msg: 'Passwords do not match',
         toastLength: Toast.LENGTH_LONG,
@@ -56,11 +50,24 @@ class _SignUpPageState extends State<SignUpPage> {
       return;
     }
 
+    if (_usernameController.text.length < 3) {
+      Fluttertoast.showToast(
+        msg: 'Username must be longer than or equal to 3 characters',
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.SNACKBAR,
+        backgroundColor: Colors.redAccent,
+        textColor: Colors.white,
+        fontSize: 15.0,
+      );
+      return;
+    }
+
     try {
-      var userCredential = await AuthService().signUpWithEmail(
-        email: emailController.text,
-        password: passwordController.text,
-        name: nameController.text,
+      var userCredential = await AuthService().signUpWithEmailAndPwd(
+        email: _emailController.text,
+        password: _passwordController.text,
+        name: _usernameController.text,
+        userType: widget.userType,
       );
       if (userCredential != null) {
         await Future.delayed(Duration(seconds: 1));
@@ -79,6 +86,19 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => InitialPage(),
+            ),
+          );
+        },
+        backgroundColor: Theme.of(context).colorScheme.secondary,
+        child: Icon(Icons.arrow_back,
+            color: Theme.of(context).colorScheme.inversePrimary),
+      ),
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -86,6 +106,7 @@ class _SignUpPageState extends State<SignUpPage> {
             padding: EdgeInsets.only(top: 8.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
                   padding: EdgeInsets.fromLTRB(30, 20, 20, 25),
@@ -101,12 +122,10 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
                 GoogleButton(
-                  onTap: signInWithGoogle,
-                  childText: "Sign up with Google",
+                  onTap: registerWithGoogle,
+                  childText: "Continue with Google",
                 ),
                 SizedBox(height: 25),
-
-                // Or continue with Email
                 Row(
                   children: [
                     Expanded(
@@ -137,33 +156,79 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ],
                 ),
-                SizedBox(height: 30),
-                SignUpTextField(
-                  controller: nameController,
-                  hintText: "Enter your name",
-                  obscureText: false,
+                SizedBox(height: 15),
+                Padding(
+                  padding: const EdgeInsets.only(left: 25.0, bottom: 8.0),
+                  child: Text(
+                    "Username",
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.tertiary,
+                      fontSize: 17,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w700,
+                      height: 0,
+                    ),
+                  ),
                 ),
-                SizedBox(height: 10),
                 SignUpTextField(
-                  controller: usernameController,
+                  controller: _usernameController,
                   hintText: "Enter your username",
                   obscureText: false,
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 18),
+                Padding(
+                  padding: const EdgeInsets.only(left: 25.0, bottom: 8.0),
+                  child: Text(
+                    "Email",
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.tertiary,
+                      fontSize: 17,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w700,
+                      height: 0,
+                    ),
+                  ),
+                ),
                 SignUpTextField(
-                  controller: emailController,
+                  controller: _emailController,
                   hintText: "Enter your email",
                   obscureText: false,
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 18),
+                Padding(
+                  padding: const EdgeInsets.only(left: 25.0, bottom: 8.0),
+                  child: Text(
+                    "Password",
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.tertiary,
+                      fontSize: 17,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w700,
+                      height: 0,
+                    ),
+                  ),
+                ),
                 SignUpTextField(
-                  controller: passwordController,
+                  controller: _passwordController,
                   hintText: "Enter your password",
                   obscureText: true,
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 18),
+                Padding(
+                  padding: const EdgeInsets.only(left: 25.0, bottom: 8.0),
+                  child: Text(
+                    "Password Confirmation",
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.tertiary,
+                      fontSize: 17,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w700,
+                      height: 0,
+                    ),
+                  ),
+                ),
                 SignUpTextField(
-                  controller: confirmPasswordController,
+                  controller: _confirmPasswordController,
                   hintText: "Confirm your password",
                   obscureText: true,
                 ),
@@ -188,8 +253,9 @@ class _SignUpPageState extends State<SignUpPage> {
                               child: Text(
                                 "Create Account",
                                 style: TextStyle(
-                                  color:
-                                      Theme.of(context).colorScheme.onTertiary,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .inversePrimary,
                                   fontSize: 15,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -213,9 +279,8 @@ class _SignUpPageState extends State<SignUpPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => LoginPage(
-                                  onTapFunction: () {},
-                                ),
+                                builder: (context) =>
+                                    LoginPage(userType: widget.userType),
                               ),
                             );
                           },
@@ -224,8 +289,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             child: Text(
                               "Login",
                               style: TextStyle(
-                                color:
-                                    Theme.of(context).colorScheme.onTertiary,
+                                color: Theme.of(context).colorScheme.onTertiary,
                                 fontSize: 17,
                                 fontWeight: FontWeight.bold,
                               ),

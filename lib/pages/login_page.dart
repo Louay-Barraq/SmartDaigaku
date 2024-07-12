@@ -6,9 +6,11 @@ import 'package:smart_daigoku/components/login_textfield.dart';
 import 'package:smart_daigoku/components/google_button.dart';
 import 'package:smart_daigoku/pages/signup_page.dart';
 import 'home_page.dart';
+import 'initial_page.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key, required void Function() onTapFunction});
+  final String userType;
+  const LoginPage({super.key, required this.userType});
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -19,7 +21,8 @@ class _LoginPageState extends State<LoginPage> {
   final _passwordController = TextEditingController();
 
   void signInWithGoogle() async {
-    var userCredential = await AuthService().signInWithGoogle();
+    var userCredential =
+        await AuthService().signInWithGoogle(selectedType: widget.userType);
     if (userCredential != null) {
       await Future.delayed(Duration(seconds: 1));
       Navigator.push(
@@ -33,7 +36,9 @@ class _LoginPageState extends State<LoginPage> {
 
   void signInWithEmailAndPwd() async {
     var userCredential = await AuthService().loginWithEmail(
-        email: _emailController.text, password: _passwordController.text);
+        email: _emailController.text,
+        password: _passwordController.text,
+        selectedType: widget.userType);
     print("signIn Value : $userCredential");
     if (userCredential != null) {
       await Future.delayed(Duration(seconds: 1));
@@ -49,6 +54,19 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => InitialPage(),
+            ),
+          );
+        },
+        backgroundColor: Theme.of(context).colorScheme.secondary,
+        child: Icon(Icons.arrow_back,
+            color: Theme.of(context).colorScheme.inversePrimary),
+      ),
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -76,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                   onTap: () {
                     signInWithGoogle();
                   },
-                  childText: "Login with Google",
+                  childText: "Continue with Google",
                 ),
                 SizedBox(
                   height: 25,
@@ -111,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ],
                 ),
-                SizedBox(height: 30.0),
+                SizedBox(height: 30),
                 Padding(
                   padding: const EdgeInsets.only(left: 25.0, bottom: 8.0),
                   child: Text(
@@ -129,7 +147,7 @@ class _LoginPageState extends State<LoginPage> {
                     controller: _emailController,
                     hintText: "Enter Email",
                     obscureText: false),
-                SizedBox(height: 22),
+                SizedBox(height: 25),
                 Padding(
                   padding: const EdgeInsets.only(
                       left: 25.0, right: 30.0, bottom: 8.0),
@@ -164,9 +182,7 @@ class _LoginPageState extends State<LoginPage> {
                     controller: _passwordController,
                     hintText: "Enter Password",
                     obscureText: true),
-                SizedBox(
-                  height: 30,
-                ),
+                SizedBox(height: 30),
                 Padding(
                   padding: const EdgeInsets.only(left: 30.0),
                   child: GestureDetector(
@@ -211,9 +227,8 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => SignUpPage(
-                                onTapFunction: () {},
-                              ),
+                              builder: (context) =>
+                                  SignUpPage(userType: widget.userType),
                             ),
                           ); // Navigate to the LoginPage
                         },
