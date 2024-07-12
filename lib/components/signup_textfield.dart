@@ -35,13 +35,14 @@ class SignUpTextField extends StatelessWidget {
         child: TextField(
           controller: controller,
           obscureText: obscureText,
+          cursorColor: Colors.grey,
           style: TextStyle(
             color: Colors.black,
           ),
           decoration: InputDecoration(
             contentPadding: EdgeInsets.only(left: 20.0),
             enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.white),
+                borderSide: BorderSide(color: Colors.grey),
                 borderRadius: BorderRadius.circular(50)),
             focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.grey),
