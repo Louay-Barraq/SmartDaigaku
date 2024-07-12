@@ -86,16 +86,14 @@ class _AppDrawerState extends State<AppDrawer> {
             elementTitle: "Home",
             icon: Icons.home,
             isSelected: _selectedElement == 'Home',
-            onTap: () => _navigateTo('Home',
-                HomePage()), // Replace ClassroomPage with the actual page
+            onTap: () => _navigateTo('Home', HomePage()),
           ),
           SizedBox(height: 10),
           DrawerElement(
             elementTitle: "Classroom",
             icon: Icons.people,
             isSelected: _selectedElement == 'Classroom',
-            onTap: () => _navigateTo('Classroom',
-                ClassroomPage()), // Replace ClassroomPage with the actual page
+            onTap: () => _navigateTo('Classroom', ClassroomPage()),
           ),
           SizedBox(height: 10),
           DrawerElement(
@@ -109,16 +107,14 @@ class _AppDrawerState extends State<AppDrawer> {
             elementTitle: "Overall",
             icon: Icons.notifications,
             isSelected: _selectedElement == 'Overall',
-            onTap: () => _navigateTo('Overall',
-                OverallPage()), // Replace OverallPage with the actual page
+            onTap: () => _navigateTo('Overall', OverallPage()),
           ),
           SizedBox(height: 10),
           DrawerElement(
             elementTitle: "Settings",
             icon: Icons.settings,
             isSelected: _selectedElement == 'Settings',
-            onTap: () => _navigateTo('Settings',
-                SettingsPage()), // Replace SettingsPage with the actual page
+            onTap: () => _navigateTo('Settings', SettingsPage()),
           ),
           Spacer(),
           ThemeToggle(),

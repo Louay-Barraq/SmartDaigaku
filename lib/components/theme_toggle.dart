@@ -49,7 +49,7 @@ class _ThemeToggleState extends State<ThemeToggle> {
                     color: Provider.of<ThemeProvider>(context, listen: false)
                             .isDarkMode
                         ? Theme.of(context).colorScheme.inversePrimary
-                        : Theme.of(context).colorScheme.secondary,
+                        : Theme.of(context).colorScheme.primary,
                     size: 25,
                   ),
                   SizedBox(width: 10),
@@ -59,7 +59,7 @@ class _ThemeToggleState extends State<ThemeToggle> {
                       color: Provider.of<ThemeProvider>(context, listen: false)
                               .isDarkMode
                           ? Theme.of(context).colorScheme.inversePrimary
-                          : Theme.of(context).colorScheme.secondary,
+                          : Theme.of(context).colorScheme.primary,
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
                     ),
@@ -101,7 +101,7 @@ class _ThemeToggleState extends State<ThemeToggle> {
                       color: Provider.of<ThemeProvider>(context, listen: false)
                               .isDarkMode
                           ? Theme.of(context).colorScheme.primary
-                          : Colors.black,
+                          : Theme.of(context).colorScheme.inversePrimary,
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
                     ),
