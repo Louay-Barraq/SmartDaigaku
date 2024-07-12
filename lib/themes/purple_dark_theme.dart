@@ -6,10 +6,11 @@ ThemeData darkPurpleTheme = ThemeData(
     surface: Color(0xFF4A0072), // Dark purple surface color
     primary: Color(0xFFFFFFFF),
     inversePrimary: Color(0xFF000000),
-    secondary: Color(0xFFCE93D8), // Soft pastel purple secondary color
-    onSecondary: Color.fromARGB(255, 134, 134, 134),
+    secondary: Color.fromARGB(
+        255, 202, 181, 255), // Soft pastel purple secondary color
+    onSecondary: Color.fromARGB(255, 202, 202, 202),
     tertiary: Color(0xFFFFFFFF),
-    onTertiary: Color(0xFF000000),
+    onTertiary: Color(0xFFC5C5C5),
   ),
   textTheme: ThemeData.dark().textTheme.apply(
         bodyColor: Colors.grey[300],
