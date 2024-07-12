@@ -68,7 +68,7 @@ class _InitialPageState extends State<InitialPage> {
                     Text(
                       "Improving Your Experience Is Our\nResponsibility",
                       style: TextStyle(
-                        color: Theme.of(context).colorScheme.onSecondary,
+                        color: Theme.of(context).colorScheme.onTertiary,
                         fontWeight: FontWeight.w700,
                         fontSize: 20,
                       ),
@@ -154,7 +154,9 @@ class _InitialPageState extends State<InitialPage> {
                             child: Text(
                               "Sign Up",
                               style: TextStyle(
-                                color: Theme.of(context).colorScheme.onTertiary,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .inversePrimary,
                                 fontSize: 20,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -194,7 +196,7 @@ class _InitialPageState extends State<InitialPage> {
                                 "Login",
                                 style: TextStyle(
                                   color:
-                                      Theme.of(context).colorScheme.onSecondary,
+                                      Theme.of(context).colorScheme.onTertiary,
                                   fontSize: 17,
                                   fontWeight: FontWeight.w700,
                                 ),

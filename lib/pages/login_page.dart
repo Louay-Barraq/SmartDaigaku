@@ -184,7 +184,7 @@ class _LoginPageState extends State<LoginPage> {
                         child: Text(
                           "Login",
                           style: TextStyle(
-                            color: Theme.of(context).colorScheme.onTertiary,
+                            color: Theme.of(context).colorScheme.inversePrimary,
                             fontSize: 15,
                             fontWeight: FontWeight.w700,
                           ),
@@ -220,7 +220,7 @@ class _LoginPageState extends State<LoginPage> {
                         child: Text(
                           "Sign up",
                           style: TextStyle(
-                            color: Colors.black,
+                            color: Theme.of(context).colorScheme.onTertiary,
                             fontSize: 15,
                             fontWeight: FontWeight.w700,
                           ),
