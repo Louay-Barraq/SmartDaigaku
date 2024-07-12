@@ -303,7 +303,7 @@ class AuthService {
         }
 
         QuerySnapshot querySnapshot =
-            await collection.where('email', isEqualTo: user!.email!).get();
+            await collection.where('email', isEqualTo: user.email!).get();
         if (querySnapshot.docs.isNotEmpty) {
           String docId = querySnapshot.docs.first.id;
           await collection.doc(docId).update({

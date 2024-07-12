@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -16,8 +16,8 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   final String _currentPage = 'Settings';
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+  // final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  // final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   final AuthService _authService = AuthService();
   final User? user = FirebaseAuth.instance.currentUser;
 

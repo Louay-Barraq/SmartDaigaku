@@ -1,11 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_daigoku/auth/auth_service.dart';
 import 'package:smart_daigoku/components/drawer.dart';
-import 'package:smart_daigoku/pages/initial_page.dart';
-
-import '../auth/auth_page.dart';
-import 'login_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
