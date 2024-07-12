@@ -2,7 +2,6 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_daigoku/pages/settings_page.dart';
 
 class UserProfileCard extends StatelessWidget {
   final User? user = FirebaseAuth.instance.currentUser;
@@ -23,12 +22,12 @@ class UserProfileCard extends StatelessWidget {
     // print("photoURL: ${user?.photoURL}");
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.secondary,
           borderRadius: BorderRadius.circular(140),
           border: Border.all(
-              color: Theme.of(context).colorScheme.secondary, width: 1)),
+              color: Theme.of(context).colorScheme.primary, width: 1)),
       child: Row(
         children: [
           CircleAvatar(
@@ -58,9 +57,9 @@ class UserProfileCard extends StatelessWidget {
           Spacer(),
           GestureDetector(
             child: Icon(
-              Icons.settings_rounded,
+              Icons.logout,
               color: Theme.of(context).colorScheme.inversePrimary,
-              size: 30,
+              size: 25,
             ),
             onTap: () {},
           ),

@@ -20,7 +20,8 @@ class _ThemeToggleState extends State<ThemeToggle> {
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(50),
-        border: Border.all(color: Colors.white, width: 1),
+        border:
+            Border.all(color: Theme.of(context).colorScheme.primary, width: 1),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -36,7 +37,7 @@ class _ThemeToggleState extends State<ThemeToggle> {
                 color: Provider.of<ThemeProvider>(context, listen: false)
                         .isDarkMode
                     ? Colors.transparent
-                    : Colors.black,
+                    : Theme.of(context).colorScheme.inversePrimary,
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.circular(50),
               ),
@@ -47,7 +48,7 @@ class _ThemeToggleState extends State<ThemeToggle> {
                     Icons.wb_sunny,
                     color: Provider.of<ThemeProvider>(context, listen: false)
                             .isDarkMode
-                        ? Colors.white
+                        ? Theme.of(context).colorScheme.inversePrimary
                         : Theme.of(context).colorScheme.secondary,
                     size: 25,
                   ),
@@ -57,7 +58,7 @@ class _ThemeToggleState extends State<ThemeToggle> {
                     style: TextStyle(
                       color: Provider.of<ThemeProvider>(context, listen: false)
                               .isDarkMode
-                          ? Colors.white
+                          ? Theme.of(context).colorScheme.inversePrimary
                           : Theme.of(context).colorScheme.secondary,
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
@@ -78,7 +79,7 @@ class _ThemeToggleState extends State<ThemeToggle> {
               decoration: BoxDecoration(
                 color: Provider.of<ThemeProvider>(context, listen: false)
                         .isDarkMode
-                    ? Colors.black
+                    ? Theme.of(context).colorScheme.inversePrimary
                     : Colors.transparent,
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.circular(50),
@@ -90,8 +91,8 @@ class _ThemeToggleState extends State<ThemeToggle> {
                     Icons.nightlight_round,
                     color: Provider.of<ThemeProvider>(context, listen: false)
                             .isDarkMode
-                        ? Colors.white
-                        : Colors.black,
+                        ? Theme.of(context).colorScheme.primary
+                        : Theme.of(context).colorScheme.inversePrimary,
                     size: 25,
                   ),
                   Text(
@@ -99,7 +100,7 @@ class _ThemeToggleState extends State<ThemeToggle> {
                     style: TextStyle(
                       color: Provider.of<ThemeProvider>(context, listen: false)
                               .isDarkMode
-                          ? Colors.white
+                          ? Theme.of(context).colorScheme.primary
                           : Colors.black,
                       fontSize: 16,
                       fontWeight: FontWeight.w700,

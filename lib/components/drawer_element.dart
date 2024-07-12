@@ -1,7 +1,6 @@
 // ignore_for_file: use_super_parameters, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-import 'package:smart_daigoku/themes/dark_theme.dart';
 
 class DrawerElement extends StatefulWidget {
   final String elementTitle;
@@ -28,14 +27,17 @@ class _DrawerElementState extends State<DrawerElement> {
       onTap: widget.onTap,
       child: Container(
         width: double.infinity,
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 25),
-        margin: EdgeInsets.symmetric(horizontal: 5),
+        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+        margin: EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
-          color: widget.isSelected
-              ? Theme.of(context).colorScheme.secondary
-              : Colors.transparent,
-          borderRadius: BorderRadius.circular(8),
-        ),
+            color: widget.isSelected
+                ? Theme.of(context).colorScheme.secondary
+                : Colors.transparent,
+            borderRadius: BorderRadius.circular(15),
+            border: widget.isSelected
+                ? Border.all(
+                    color: Theme.of(context).colorScheme.primary, width: 1)
+                : null),
         child: Row(
           children: [
             Icon(
