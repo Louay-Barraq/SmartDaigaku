@@ -7,11 +7,11 @@ import 'package:smart_daigoku/themes/purple_dark_theme.dart';
 import 'package:smart_daigoku/themes/purple_light_theme.dart';
 
 class ThemeProvider extends ChangeNotifier {
-  ThemeData _themeData = lightPurpleTheme;
+  ThemeData _themeData = lightTheme;
 
   ThemeData get themeData => _themeData;
 
-  bool get isDarkMode => _themeData == darkPurpleTheme;
+  bool get isDarkMode => _themeData == darkTheme;
 
   set themeData(ThemeData themeData) {
     _themeData = themeData;
@@ -19,10 +19,10 @@ class ThemeProvider extends ChangeNotifier {
   }
 
   void toggleTheme() {
-    if (_themeData == lightPurpleTheme) {
-      _themeData = darkPurpleTheme;
+    if (_themeData == lightTheme) {
+      _themeData = darkTheme;
     } else {
-      _themeData = lightPurpleTheme;
+      _themeData = lightTheme;
     }
     notifyListeners();
   }
