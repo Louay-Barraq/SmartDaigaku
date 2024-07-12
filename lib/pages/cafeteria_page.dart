@@ -9,7 +9,7 @@ class CafeteriaPage extends StatefulWidget {
 }
 
 class _CafeteriaPageState extends State<CafeteriaPage> {
-  String _currentPage = 'Cafeteria';
+  final String _currentPage = 'Cafeteria';
   @override
   Widget build(BuildContext context) {
     return Scaffold(

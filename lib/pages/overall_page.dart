@@ -12,7 +12,7 @@ class OverallPage extends StatefulWidget {
 }
 
 class _OverallPageState extends State<OverallPage> {
-  String _currentPage = 'Overall';
+  final String _currentPage = 'Overall';
   List<NotificationItem> _notifications = [
     NotificationItem(
       text: 'The situation has returned to normal in Building C now.',

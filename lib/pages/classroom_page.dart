@@ -10,7 +10,7 @@ class ClassroomPage extends StatefulWidget {
 }
 
 class _ClassroomPageState extends State<ClassroomPage> {
-  String _currentPage = 'Classroom';
+  final String _currentPage = 'Classroom';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
