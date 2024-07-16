@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:smart_daigoku/auth/auth_service.dart';
 import 'package:smart_daigoku/components/drawer.dart';
 import '../themes/theme_provider.dart';
+import 'initial_page.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -16,8 +17,6 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   final String _currentPage = 'Settings';
-  // final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  // final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   final AuthService _authService = AuthService();
   final User? user = FirebaseAuth.instance.currentUser;
 
@@ -108,85 +107,83 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  void _updateEmail(BuildContext context) {
+  Future<void> _updateEmail(BuildContext context) async {
+    final authService = Provider.of<AuthService>(context, listen: false);
     TextEditingController emailController = TextEditingController();
+
     showDialog(
       context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text("Update Email"),
-          content: TextField(
-            controller: emailController,
-            cursorColor: Colors.grey,
-            decoration: InputDecoration(
-              hintText: "Enter new email",
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey),
-              ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey),
+      builder: (context) => AlertDialog(
+        title: Text('Update Email'),
+        content: TextField(
+          controller: emailController,
+          decoration: InputDecoration(hintText: "Enter new email"),
+        ),
+        actions: [
+          TextButton(
+            child: Text(
+              'Cancel',
+              style: TextStyle(
+                color: Colors.red,
               ),
             ),
+            onPressed: () => Navigator.pop(context),
           ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text(
-                "Cancel",
-                style: TextStyle(
-                  color: Colors.red,
-                ),
+          TextButton(
+            child: Text(
+              'Update',
+              style: TextStyle(
+                color: Colors.green,
               ),
             ),
-            TextButton(
-              onPressed: () async {
-                String newEmail = emailController.text.trim();
+            onPressed: () async {
+              String newEmail = emailController.text.trim();
+              if (newEmail.isNotEmpty) {
+                await authService.updateEmail(newEmail);
+                Navigator.pop(context);
 
-                if (newEmail.isEmpty || !newEmail.contains('@')) {
-                  Fluttertoast.showToast(
-                    msg: 'Please enter a valid email!',
-                    toastLength: Toast.LENGTH_LONG,
-                    gravity: ToastGravity.SNACKBAR,
-                    backgroundColor: Colors.redAccent,
-                    textColor: Colors.white,
-                    fontSize: 17.0,
-                  );
-                  return;
-                }
-
-                try {
-                  await _authService.updateEmail(newEmail);
-                  Navigator.of(context).pop();
-                  Fluttertoast.showToast(
-                    msg:
-                        'Verification email sent to $newEmail. Please verify your new email.',
-                    toastLength: Toast.LENGTH_LONG,
-                    gravity: ToastGravity.SNACKBAR,
-                    backgroundColor: Colors.green,
-                    textColor: Colors.white,
-                    fontSize: 17.0,
-                  );
-                } catch (e) {
-                  Fluttertoast.showToast(
-                    msg: 'Failed to update email: ${e.toString()}',
-                    toastLength: Toast.LENGTH_LONG,
-                    gravity: ToastGravity.SNACKBAR,
-                    backgroundColor: Colors.redAccent,
-                    textColor: Colors.white,
-                    fontSize: 17.0,
-                  );
-                }
-              },
-              child: Text(
-                "Update",
-                style: TextStyle(
-                  color: Colors.green,
-                ),
-              ),
-            ),
-          ],
-        );
-      },
+                // Show warning dialog
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text('Email Updated'),
+                    content:
+                        Text('You will be signed out. Please log in again.'),
+                    actions: [
+                      TextButton(
+                        child: Text(
+                          'OK',
+                          style: TextStyle(
+                            color: Colors.green,
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                          authService.logout();
+                          Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                                builder: (context) => InitialPage()),
+                            (route) => false,
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                );
+              } else {
+                Fluttertoast.showToast(
+                  msg: 'Please enter a valid email.',
+                  toastLength: Toast.LENGTH_LONG,
+                  gravity: ToastGravity.SNACKBAR,
+                  backgroundColor: Colors.amber,
+                  textColor: Colors.white,
+                  fontSize: 17.0,
+                );
+              }
+            },
+          ),
+        ],
+      ),
     );
   }
 
@@ -260,6 +257,19 @@ class _SettingsPageState extends State<SettingsPage> {
                   return;
                 }
 
+                if (newPassword == currentPassword) {
+                  // Handle empty or short password case
+                  Fluttertoast.showToast(
+                    msg: 'New password is the same as the old password!',
+                    toastLength: Toast.LENGTH_LONG,
+                    gravity: ToastGravity.SNACKBAR,
+                    backgroundColor: Colors.redAccent,
+                    textColor: Colors.white,
+                    fontSize: 17.0,
+                  );
+                  return;
+                }
+
                 try {
                   // Call the authentication service to update the password
                   await _authService.updatePassword(
@@ -283,7 +293,21 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  void _updateProfilePhoto(BuildContext context) {}
+  Future<void> _updateProfilePhoto(
+      BuildContext context, AuthService authService) async {
+    try {
+      await authService.updatePhoto(context);
+    } catch (e) {
+      Fluttertoast.showToast(
+        msg: 'Failed to update profile photo: ${e.toString()}',
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.SNACKBAR,
+        backgroundColor: Colors.redAccent,
+        textColor: Colors.white,
+        fontSize: 17.0,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -329,7 +353,9 @@ class _SettingsPageState extends State<SettingsPage> {
                     title: 'Update Email',
                     subtitle: 'Refresh your contact email',
                     icon: Icons.email,
-                    onTap: () => _updateEmail(context),
+                    onTap: () {
+                      _updateEmail(context);
+                    },
                   ),
                 // Only show this tile for email/password users
                 if (!isGoogleUser)
@@ -345,7 +371,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   title: 'Update Profile Photo',
                   subtitle: 'Show the world your new look',
                   icon: Icons.photo,
-                  onTap: () => _updateProfilePhoto(context),
+                  onTap: () => _updateProfilePhoto(context, _authService),
                 ),
 
                 Divider(height: 30, indent: 10, endIndent: 30),
