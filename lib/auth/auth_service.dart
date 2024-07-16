@@ -1,12 +1,19 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
+  final ImagePicker _picker = ImagePicker();
 
   Future<UserCredential?> loginWithEmail({
     required String email,
@@ -262,22 +269,13 @@ class AuthService {
   }
 
   Future<void> updateEmail(String newEmail) async {
-    try {
-      User? user = _firebaseAuth.currentUser;
-      if (user != null) {
+    User? user = _firebaseAuth.currentUser;
+    if (user != null) {
+      try {
         await user.verifyBeforeUpdateEmail(newEmail);
-        await user.reload();
-        user = _firebaseAuth.currentUser;
-      } else {
-        throw FirebaseAuthException(
-          code: 'user-not-logged-in',
-          message: 'User is not logged in.',
-        );
-      }
 
-      // Update email in Firestore
-      String? userType = await _getUserType(user!.email!);
-      if (userType != null) {
+        // Update email in Firestore
+        String? userType = await _getUserType(user.email!);
         CollectionReference collection;
         switch (userType) {
           case 'Student':
@@ -303,38 +301,43 @@ class AuthService {
         }
 
         QuerySnapshot querySnapshot =
-            await collection.where('email', isEqualTo: user.email!).get();
+            await collection.where('email', isEqualTo: user.email).get();
         if (querySnapshot.docs.isNotEmpty) {
           String docId = querySnapshot.docs.first.id;
           await collection.doc(docId).update({
             'email': newEmail,
-            'timestamp': Timestamp.now(),
           });
         } else {
           throw Exception('User document not found.');
         }
-      } else {
-        throw Exception('User type not found.');
-      }
 
-      Fluttertoast.showToast(
-        msg: 'Email updated successfully!',
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.SNACKBAR,
-        backgroundColor: Colors.green,
-        textColor: Colors.white,
-        fontSize: 17.0,
+        Fluttertoast.showToast(
+          msg: 'Verification email sent. Please verify and log in again.',
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.SNACKBAR,
+          backgroundColor: Colors.green,
+          textColor: Colors.white,
+          fontSize: 17.0,
+        );
+
+        // Sign out the user
+        await _firebaseAuth.signOut();
+      } catch (e) {
+        Fluttertoast.showToast(
+          msg: 'Failed to update email: ${e.toString()}',
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.SNACKBAR,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 17.0,
+        );
+        rethrow;
+      }
+    } else {
+      throw FirebaseAuthException(
+        code: 'user-not-logged-in',
+        message: 'User is not logged in.',
       );
-    } catch (e) {
-      Fluttertoast.showToast(
-        msg: 'Failed to update email: ${e.toString()}',
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.SNACKBAR,
-        backgroundColor: Colors.redAccent,
-        textColor: Colors.white,
-        fontSize: 17.0,
-      );
-      rethrow;
     }
   }
 
@@ -372,6 +375,142 @@ class AuthService {
         fontSize: 17.0,
       );
       rethrow;
+    }
+  }
+
+  Future<void> updatePhoto(BuildContext context) async {
+    try {
+      final ImageSource? source = await showDialog<ImageSource>(
+          context: context,
+          builder: (context) => AlertDialog(
+                title: Text('Select Image Source'),
+                content: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    TextButton(
+                      onPressed: () =>
+                          Navigator.pop(context, ImageSource.camera),
+                      child: Text(
+                        'Camera',
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () =>
+                          Navigator.pop(context, ImageSource.gallery),
+                      child: Text(
+                        'Gallery',
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary),
+                      ),
+                    ),
+                  ],
+                ),
+              ));
+
+      if (source == null) return;
+
+      final XFile? image = await _picker.pickImage(source: source);
+      if (image == null) return;
+
+      User? user = _firebaseAuth.currentUser;
+      if (user != null) {
+        final XFile? compressedImage = await _compressImage(File(image.path));
+        if (compressedImage == null) {
+          throw Exception('Image compression failed.');
+        }
+
+        final String fileName = '${user.uid}.jpg';
+        final Reference storageRef =
+            _firebaseStorage.ref().child('user_photos/$fileName');
+        final UploadTask uploadTask =
+            storageRef.putFile(File(compressedImage.path));
+        final TaskSnapshot taskSnapshot = await uploadTask;
+        final String photoUrl = await taskSnapshot.ref.getDownloadURL();
+
+        await user.updatePhotoURL(photoUrl);
+
+        // Update Firestore
+        await _updateUserPhotoInFirestore(user.email!, photoUrl);
+
+        Fluttertoast.showToast(
+          msg: 'Profile photo updated successfully!',
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.SNACKBAR,
+          backgroundColor: Colors.green,
+          textColor: Colors.white,
+          fontSize: 17.0,
+        );
+      }
+    } catch (e) {
+      print(e.toString());
+      Fluttertoast.showToast(
+        msg: 'Failed to update profile photo: ${e.toString()}',
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.SNACKBAR,
+        backgroundColor: Colors.redAccent,
+        textColor: Colors.white,
+        fontSize: 17.0,
+      );
+    }
+  }
+
+  Future<XFile?> _compressImage(File file) async {
+    final filePath = file.absolute.path;
+    final lastIndex = filePath.lastIndexOf('.');
+    final outPath = '${filePath.substring(0, lastIndex)}_compressed.jpg';
+
+    final XFile? result = await FlutterImageCompress.compressAndGetFile(
+      file.absolute.path,
+      outPath,
+      quality: 85,
+    );
+
+    return result;
+  }
+
+  Future<void> _updateUserPhotoInFirestore(
+      String email, String photoUrl) async {
+    String? userType = await _getUserType(email);
+    if (userType != null) {
+      CollectionReference collection;
+      switch (userType) {
+        case 'Student':
+          collection = _firestore
+              .collection('Users')
+              .doc('Students')
+              .collection('Students');
+          break;
+        case 'Professor':
+          collection = _firestore
+              .collection('Users')
+              .doc('Professors')
+              .collection('Professors');
+          break;
+        case 'Academic Staff Member':
+          collection = _firestore
+              .collection('Users')
+              .doc('Academic Staff Members')
+              .collection('Academic Staff Members');
+          break;
+        default:
+          throw Exception('Invalid user type');
+      }
+
+      QuerySnapshot querySnapshot =
+          await collection.where('email', isEqualTo: email).get();
+      if (querySnapshot.docs.isNotEmpty) {
+        String docId = querySnapshot.docs.first.id;
+        await collection.doc(docId).update({
+          'photoUrl': photoUrl,
+          'timestamp': Timestamp.now(),
+        });
+      } else {
+        throw Exception('User document not found.');
+      }
+    } else {
+      throw Exception('User type not found.');
     }
   }
 
