@@ -42,8 +42,13 @@ dependencies:
   google_sign_in: ^6.2.1
   cloud_firestore: ^5.0.2
   provider: ^6.1.2
+  image_picker: ^1.1.2
+  firebase_storage: ^12.1.1
+  flutter_image_compress: ^2.3.0
+
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.13.1
   flutter_test:
     sdk: flutter
 
@@ -56,6 +61,12 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/SmartDaigoku_Logo.jpg"
+
 
 # The following section is specific to Flutter packages.
 flutter:
