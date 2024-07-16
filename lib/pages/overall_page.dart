@@ -72,7 +72,11 @@ class _OverallPageState extends State<OverallPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
-        title: Text('Overall Page'),
+        title: Text(
+          'O V E R A L L',
+          style: TextStyle(fontWeight: FontWeight.normal),
+        ),
+        centerTitle: true,
       ),
       drawer: AppDrawer(currentPage: _currentPage),
       body: SafeArea(

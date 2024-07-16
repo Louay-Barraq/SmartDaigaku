@@ -17,10 +17,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.surface,
-        title: Text(
-          'H O M E',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
+        title: Text('H O M E', style: TextStyle(fontWeight: FontWeight.normal)),
         centerTitle: true,
       ),
       drawer: AppDrawer(currentPage: _currentPage),
