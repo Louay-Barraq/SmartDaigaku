@@ -32,6 +32,7 @@ class UserProfileCard extends StatelessWidget {
             Border.all(color: Theme.of(context).colorScheme.primary, width: 1),
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           CircleAvatar(
             radius: 25,
@@ -63,6 +64,7 @@ class UserProfileCard extends StatelessWidget {
               ],
             ),
           ),
+          SizedBox(width: 10),
           Container(
             margin: EdgeInsets.only(left: 3),
             child: GestureDetector(
@@ -79,15 +81,6 @@ class UserProfileCard extends StatelessWidget {
                 );
               },
             ),
-          ),
-          Spacer(),
-          GestureDetector(
-            child: Icon(
-              Icons.logout,
-              color: Theme.of(context).colorScheme.inversePrimary,
-              size: 25,
-            ),
-            onTap: () {},
           ),
         ],
       ),
