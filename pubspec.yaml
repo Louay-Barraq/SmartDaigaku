@@ -45,6 +45,8 @@ dependencies:
   image_picker: ^1.1.2
   firebase_storage: ^12.1.1
   flutter_image_compress: ^2.3.0
+  intl: ^0.19.0
+  smooth_page_indicator: ^1.1.0
 
 
 dev_dependencies:
@@ -85,6 +87,9 @@ flutter:
    - assets/images/reflecting.png
    - assets/images/profile_picture.png
    - assets/images/color_wheel.png
+   - assets/images/Graduation_hat.png
+   - assets/images/page_card_bg.png
+   - assets/images/arrow_image.png
 
 
   # fonts:
