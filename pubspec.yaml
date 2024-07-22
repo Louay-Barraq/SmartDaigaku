@@ -50,6 +50,7 @@ dependencies:
   http: ^1.2.2
   geolocator: ^7.0.0
   geocoding: ^3.0.0
+  flutter_dotenv: ^5.1.0
 
 
 dev_dependencies:
