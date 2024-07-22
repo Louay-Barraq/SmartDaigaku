@@ -47,6 +47,9 @@ dependencies:
   flutter_image_compress: ^2.3.0
   intl: ^0.19.0
   smooth_page_indicator: ^1.1.0
+  http: ^1.2.2
+  geolocator: ^7.0.0
+  geocoding: ^3.0.0
 
 
 dev_dependencies:
@@ -90,6 +93,13 @@ flutter:
    - assets/images/Graduation_hat.png
    - assets/images/page_card_bg.png
    - assets/images/arrow_image.png
+   - assets/images/1.png
+   - assets/images/2.png
+   - assets/images/3.png
+   - assets/images/4.png
+   - assets/images/5.png
+   - assets/images/6.png
+   - assets/images/7.png
 
 
   # fonts:
