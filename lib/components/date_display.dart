@@ -27,7 +27,7 @@ class DateDisplay extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(Icons.calendar_today, color: Colors.white, size: 30),
-          SizedBox(width: 10),
+          SizedBox(width: 20),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -43,7 +43,7 @@ class DateDisplay extends StatelessWidget {
                 year,
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 28,
+                  fontSize: 25,
                   fontWeight: FontWeight.bold,
                 ),
               ),
