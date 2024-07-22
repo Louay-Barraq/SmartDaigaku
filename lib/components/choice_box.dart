@@ -2,21 +2,29 @@ import 'package:flutter/material.dart';
 
 class ChoiceBox extends StatelessWidget {
   final String mainText;
+  final bool selected;
 
-  const ChoiceBox({super.key, required this.mainText});
+  const ChoiceBox({super.key, required this.mainText, this.selected = false});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(50.0),
-        color: Colors.white,
+        color: Theme.of(context).cardTheme.surfaceTintColor,
+        border: Border.all(
+          color: selected
+              ? Theme.of(context).colorScheme.secondary
+              : Theme.of(context).colorScheme.primary,
+          width: 1.5,
+        ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.3), // Shadow color with opacity
-            spreadRadius: 2, // Spread radius
-            blurRadius: 7, // Blur radius
-            offset: Offset(0, 5), // Offset in x and y direction
+            color:
+                Theme.of(context).colorScheme.inversePrimary.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 7,
+            offset: Offset(0, 5),
           ),
         ],
       ),
@@ -26,7 +34,9 @@ class ChoiceBox extends StatelessWidget {
         child: Text(
           mainText,
           style: TextStyle(
-            color: Color.fromRGBO(0, 0, 0, 0.5),
+            color: selected
+                ? Theme.of(context).colorScheme.secondary
+                : Theme.of(context).cardTheme.color,
             fontSize: 22,
             fontWeight: FontWeight.w700,
           ),

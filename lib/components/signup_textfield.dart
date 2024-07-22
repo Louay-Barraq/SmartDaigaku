@@ -1,12 +1,12 @@
-// ignore_for_file: prefer_typing_uninitialized_variables, prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_typing_uninitialized_variables, camel_case_types
 
 import 'package:flutter/material.dart';
 
-class loginTextField extends StatelessWidget {
+class SignUpTextField extends StatelessWidget {
   final controller;
   final String hintText;
   final bool obscureText;
-  const loginTextField({
+  const SignUpTextField({
     super.key,
     required this.controller,
     required this.hintText,
@@ -35,16 +35,22 @@ class loginTextField extends StatelessWidget {
         child: TextField(
           controller: controller,
           obscureText: obscureText,
+          cursorColor: Colors.grey,
+          style: TextStyle(
+            color: Colors.black,
+          ),
           decoration: InputDecoration(
-            contentPadding:
-                EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
+            contentPadding: EdgeInsets.only(left: 20.0),
             enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.white),
+                borderSide: BorderSide(color: Colors.grey),
                 borderRadius: BorderRadius.circular(50)),
             focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.grey),
                 borderRadius: BorderRadius.circular(50)),
             hintText: hintText,
+            hintStyle: TextStyle(
+              color: Color(0x7F000000),
+            ),
             fillColor: Colors.white,
             filled: true,
           ),

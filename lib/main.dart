@@ -1,29 +1,57 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_import, duplicate_ignore
-
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_import, duplicate_ignore, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
-import 'package:smart_daigoku/pages/login_page.dart';
-import 'package:smart_daigoku/pages/signup_page.dart';
-import 'package:smart_daigoku/pages/initial_page.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:smart_daigoku/auth/auth_page.dart';
+import 'package:smart_daigoku/auth/auth_service.dart';
+import 'package:smart_daigoku/pages/home_page.dart';
+import 'package:smart_daigoku/themes/theme_provider.dart';
+import 'firebase_options.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
+  await dotenv.load();
+
+  runApp(
+    MultiProvider(
+      providers: [
+        Provider<AuthService>(
+          create: (_) => AuthService(),
+        ),
+        ChangeNotifierProvider<ThemeProvider>(
+          create: (_) => ThemeProvider(),
+        ),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: WelcomeScreen(),
-    );
-  }
-}
+  const MyApp({super.key});
 
-class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SignUp();
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, child) {
+        return MaterialApp(
+          theme: themeProvider.themeData,
+          debugShowCheckedModeBanner: false,
+          home: HomePage(),
+        );
+      },
+    );
   }
 }
