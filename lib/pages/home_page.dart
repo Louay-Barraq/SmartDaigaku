@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:smart_daigoku/components/component_3.dart';
@@ -35,7 +37,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _pageController = PageController(initialPage: 0);
-    _timer = Timer.periodic(Duration(seconds: 10), (Timer timer) {
+    _timer = Timer.periodic(Duration(seconds: 7), (Timer timer) {
       int nextPage = _pageController.page!.round() + 1;
       if (nextPage == 3) {
         nextPage = 0;
@@ -155,7 +157,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       SizedBox(height: 10),
                       Container(
-                        height: 140,
+                        height: 150,
                         decoration: BoxDecoration(
                           color: Color(0xFF52556F),
                           borderRadius: BorderRadius.circular(15),
