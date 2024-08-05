@@ -2,8 +2,8 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_daigoku/auth/auth_service.dart';
-import 'package:smart_daigoku/pages/initial_page.dart';
+import 'package:smart_daigaku/auth/auth_service.dart';
+import 'package:smart_daigaku/pages/initial_page.dart';
 
 class UserProfileCard extends StatelessWidget {
   final User? user = FirebaseAuth.instance.currentUser;

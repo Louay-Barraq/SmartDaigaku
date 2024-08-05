@@ -2,16 +2,16 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:smart_daigoku/components/component_3.dart';
-import 'package:smart_daigoku/components/quotes_component.dart';
-import 'package:smart_daigoku/components/weather_component.dart';
-import 'package:smart_daigoku/pages/availability_Page.dart';
-import 'package:smart_daigoku/pages/cafeteria_page.dart';
-import 'package:smart_daigoku/pages/classroom_page.dart';
-import 'package:smart_daigoku/pages/overall_page.dart';
+import 'package:smart_daigaku/components/component_3.dart';
+import 'package:smart_daigaku/components/quotes_component.dart';
+import 'package:smart_daigaku/components/weather_component.dart';
+import 'package:smart_daigaku/pages/availability_Page.dart';
+import 'package:smart_daigaku/pages/cafeteria_page.dart';
+import 'package:smart_daigaku/pages/classroom_page.dart';
+import 'package:smart_daigaku/pages/overall_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:smart_daigoku/services/weather/weather_model.dart';
-import 'package:smart_daigoku/services/weather/weather_service.dart';
+import 'package:smart_daigaku/services/weather/weather_model.dart';
+import 'package:smart_daigaku/services/weather/weather_service.dart';
 import '../components/date_display.dart';
 import '../components/page_card.dart';
 import '../components/drawer.dart';
@@ -108,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           Text(
-                            'Daigoku',
+                            'Daigaku',
                             style: TextStyle(
                               color: Color(0xFF52556F),
                               fontSize: 40,

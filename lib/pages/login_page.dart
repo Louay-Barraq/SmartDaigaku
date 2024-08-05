@@ -1,10 +1,10 @@
 // ignore_for_file: sized_box_for_whitespace, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, use_build_context_synchronously, avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:smart_daigoku/auth/auth_service.dart';
-import 'package:smart_daigoku/components/login_textfield.dart';
-import 'package:smart_daigoku/components/google_button.dart';
-import 'package:smart_daigoku/pages/signup_page.dart';
+import 'package:smart_daigaku/auth/auth_service.dart';
+import 'package:smart_daigaku/components/login_textfield.dart';
+import 'package:smart_daigaku/components/google_button.dart';
+import 'package:smart_daigaku/pages/signup_page.dart';
 import 'home_page.dart';
 import 'initial_page.dart';
 
@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30, 20, 0, 25),
                   child: Text(
-                    'Login to SmartDaigoku !',
+                    'Login to SmartDaigaku !',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 30,

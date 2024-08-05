@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:smart_daigoku/themes/theme_provider.dart';
+import 'package:smart_daigaku/themes/theme_provider.dart';
 
 class ThemeToggle extends StatefulWidget {
   const ThemeToggle({super.key});

@@ -1,10 +1,10 @@
 // ignore_for_file: unused_import
 
 import 'package:flutter/material.dart';
-import 'package:smart_daigoku/themes/dark_theme.dart';
-import 'package:smart_daigoku/themes/light_theme.dart';
-import 'package:smart_daigoku/themes/purple_dark_theme.dart';
-import 'package:smart_daigoku/themes/purple_light_theme.dart';
+import 'package:smart_daigaku/themes/dark_theme.dart';
+import 'package:smart_daigaku/themes/light_theme.dart';
+import 'package:smart_daigaku/themes/purple_dark_theme.dart';
+import 'package:smart_daigaku/themes/purple_light_theme.dart';
 
 class ThemeProvider extends ChangeNotifier {
   ThemeData _themeData = lightTheme;
