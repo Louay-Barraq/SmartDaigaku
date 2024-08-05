@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_daigoku/pages/home_page.dart';
-import 'package:smart_daigoku/pages/initial_page.dart';
+import 'package:smart_daigaku/pages/home_page.dart';
+import 'package:smart_daigaku/pages/initial_page.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});

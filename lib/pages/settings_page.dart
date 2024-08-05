@@ -3,8 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
-import 'package:smart_daigoku/auth/auth_service.dart';
-import 'package:smart_daigoku/components/drawer.dart';
+import 'package:smart_daigaku/auth/auth_service.dart';
+import 'package:smart_daigaku/components/drawer.dart';
 import '../themes/theme_provider.dart';
 import 'initial_page.dart';
 

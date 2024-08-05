@@ -1,4 +1,4 @@
-package com.example.smart_daigoku
+package com.example.smart_daigaku
 
 import io.flutter.embedding.android.FlutterActivity
 

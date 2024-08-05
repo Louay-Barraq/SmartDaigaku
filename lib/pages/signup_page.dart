@@ -2,12 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:smart_daigoku/auth/auth_service.dart';
-import 'package:smart_daigoku/components/google_button.dart';
-import 'package:smart_daigoku/components/signup_textfield.dart';
-import 'package:smart_daigoku/pages/initial_page.dart';
-import 'package:smart_daigoku/pages/login_page.dart';
-import 'package:smart_daigoku/pages/home_page.dart';
+import 'package:smart_daigaku/auth/auth_service.dart';
+import 'package:smart_daigaku/components/google_button.dart';
+import 'package:smart_daigaku/components/signup_textfield.dart';
+import 'package:smart_daigaku/pages/initial_page.dart';
+import 'package:smart_daigaku/pages/login_page.dart';
+import 'package:smart_daigaku/pages/home_page.dart';
 
 class SignUpPage extends StatefulWidget {
   final String userType;
@@ -111,7 +111,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(30, 20, 20, 25),
                   child: Text(
-                    'Sign up to SmartDaigoku !',
+                    'Sign up to SmartDaigaku !',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 30,

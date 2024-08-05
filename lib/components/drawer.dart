@@ -2,10 +2,10 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_daigoku/components/drawer_element.dart';
-import 'package:smart_daigoku/components/theme_toggle.dart';
-import 'package:smart_daigoku/components/user_profile_card.dart';
-import 'package:smart_daigoku/pages/home_page.dart';
+import 'package:smart_daigaku/components/drawer_element.dart';
+import 'package:smart_daigaku/components/theme_toggle.dart';
+import 'package:smart_daigaku/components/user_profile_card.dart';
+import 'package:smart_daigaku/pages/home_page.dart';
 import '../pages/cafeteria_page.dart';
 import '../pages/classroom_page.dart';
 import '../pages/overall_page.dart';
@@ -69,7 +69,7 @@ class _AppDrawerState extends State<AppDrawer> {
                     ),
                   ),
                   Text(
-                    'Daigoku',
+                    'daigaku',
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.tertiary,
                       fontSize: 28,

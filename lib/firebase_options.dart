@@ -53,18 +53,18 @@ class DefaultFirebaseOptions {
     apiKey: 'AIzaSyBCQgZoRqtAw7edouWYjH_LcvocMNtqaXg',
     appId: '1:848255850094:android:bb8493eb3ee2be61fe787f',
     messagingSenderId: '848255850094',
-    projectId: 'smart-daigoku-d4422',
-    storageBucket: 'smart-daigoku-d4422.appspot.com',
+    projectId: 'smart-daigaku-d4422',
+    storageBucket: 'smart-daigaku-d4422.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyA_3omUHI9G4Rch3UGCGzUhDEtnEYklJ3s',
     appId: '1:848255850094:ios:3216e283bba56734fe787f',
     messagingSenderId: '848255850094',
-    projectId: 'smart-daigoku-d4422',
-    storageBucket: 'smart-daigoku-d4422.appspot.com',
-    iosClientId: '848255850094-rrdud6sjml9vrhnfntjrvjoqc30rm7ar.apps.googleusercontent.com',
-    iosBundleId: 'com.example.smartDaigoku',
+    projectId: 'smart-daigaku-d4422',
+    storageBucket: 'smart-daigaku-d4422.appspot.com',
+    iosClientId:
+        '848255850094-rrdud6sjml9vrhnfntjrvjoqc30rm7ar.apps.googleusercontent.com',
+    iosBundleId: 'com.example.smartdaigaku',
   );
-
 }

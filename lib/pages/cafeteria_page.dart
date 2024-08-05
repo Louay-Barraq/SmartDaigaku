@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_daigoku/components/drawer.dart';
+import 'package:smart_daigaku/components/drawer.dart';
 
 class CafeteriaPage extends StatefulWidget {
   const CafeteriaPage({super.key});

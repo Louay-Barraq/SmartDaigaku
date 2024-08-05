@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_daigoku/services/weather/weather_model.dart';
+import 'package:smart_daigaku/services/weather/weather_model.dart';
 
 class WeatherComponent extends StatelessWidget {
   final WeatherModel? weather;
@@ -40,14 +40,24 @@ class WeatherComponent extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Image.asset(getWeatherIcon(weather!.weatherId)),
-          SizedBox(width: 10),
-          Text(
-            weather?.cityName ?? "City Name",
-            style: TextStyle(color: Colors.white),
-          ),
-          Text(
-            '${weather?.temperature.round()}°C',
-            style: TextStyle(color: Colors.white),
+          SizedBox(width: 50),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                weather?.cityName ?? "City Name",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.w700),
+              ),
+              SizedBox(height: 15),
+              Text(
+                '${weather?.temperature.round()}°C',
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+            ],
           ),
         ],
       );

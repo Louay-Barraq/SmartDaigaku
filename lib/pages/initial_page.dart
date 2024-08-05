@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:smart_daigoku/components/choice_box.dart';
-import 'package:smart_daigoku/pages/login_page.dart';
-import 'package:smart_daigoku/pages/signup_page.dart';
+import 'package:smart_daigaku/components/choice_box.dart';
+import 'package:smart_daigaku/pages/login_page.dart';
+import 'package:smart_daigaku/pages/signup_page.dart';
 
 class InitialPage extends StatefulWidget {
   const InitialPage({super.key});
@@ -55,7 +55,7 @@ class _InitialPageState extends State<InitialPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Welcome To\nSmartDaigoku",
+                      "Welcome To\nSmartDaigaku",
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.primary,
                         fontWeight: FontWeight.w700,
