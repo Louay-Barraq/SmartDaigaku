@@ -1,4 +1,4 @@
-SmartDaigoku
+SmartDaigaku
 =======
 ## Getting Started
 
