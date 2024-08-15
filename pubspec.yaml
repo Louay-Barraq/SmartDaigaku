@@ -71,7 +71,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/icons/SmartDaigoku_Logo.jpg"
+  image_path: "assets/icons/SmartDaigaku_Logo.jpg"
 
 
 # The following section is specific to Flutter packages.
@@ -84,7 +84,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-   - assets/icons/SmartDaigoku_Logo.jpg
+   - assets/icons/SmartDaigaku_Logo.jpg
    - assets/images/google_icon.png
    - assets/images/new_beginnings.png
    - assets/images/growth.png
