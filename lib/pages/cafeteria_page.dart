@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:smart_daigaku/components/drawer.dart';
 
@@ -55,7 +53,6 @@ class _CafeteriaPageState extends State<CafeteriaPage> {
 
   @override
   Widget build(BuildContext context) {
-    Random random = new Random();
     final isEmpty = false;
     final double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
