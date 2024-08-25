@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import '../components/drawer.dart';
+import '../components/classroom_layout.dart'; // Import the ClassroomLayout component
 
 class ClassroomPage extends StatefulWidget {
   const ClassroomPage({super.key});
@@ -17,7 +17,14 @@ class _ClassroomPageState extends State<ClassroomPage> {
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
     final double appBarHeight = AppBar().preferredSize.height;
-    final double containerHeight = (screenHeight - appBarHeight - 120) / 2;
+    final double classroomHeight = (screenHeight - appBarHeight - 120) / 2;
+    final double desksContainerwidth = (screenWidth - 150);
+    final double desksContainerHeight = (classroomHeight - 120) / 5;
+    final double estimatedPeopleContainerWidth =
+        desksContainerwidth + 10 + desksContainerwidth / 6.5;
+
+    final List<TableData> tablesData =
+        generateMockClassroomData(); // Generate mock data
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
@@ -85,23 +92,20 @@ class _ClassroomPageState extends State<ClassroomPage> {
               ),
               const SizedBox(height: 20),
 
-              // Classroom Layout
+              // Classroom Layout using ClassroomLayout component
               Container(
                 width: screenWidth - 30,
-                height: containerHeight,
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black, width: 2),
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
+                height: classroomHeight,
+                child: ClassroomLayout(tablesData: tablesData),
               ),
+
               const SizedBox(height: 20),
 
               // Estimations Section
               Container(
                 width: screenWidth - 30,
-                height: containerHeight,
+                height: classroomHeight,
                 decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black, width: 2),
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10)),
                 child: Column(
@@ -113,7 +117,7 @@ class _ClassroomPageState extends State<ClassroomPage> {
                         'Estimations',
                         style: TextStyle(
                           fontWeight: FontWeight.w700,
-                          fontSize: 35,
+                          fontSize: 28,
                           color: Color(0xFF606464),
                         ),
                       ),
@@ -124,8 +128,8 @@ class _ClassroomPageState extends State<ClassroomPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          width: 300,
-                          height: 50,
+                          width: desksContainerwidth,
+                          height: desksContainerHeight,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(8),
@@ -150,8 +154,8 @@ class _ClassroomPageState extends State<ClassroomPage> {
                         ),
                         const SizedBox(width: 10),
                         Container(
-                          width: 45,
-                          height: 50,
+                          width: desksContainerwidth / 6.5,
+                          height: desksContainerHeight,
                           decoration: BoxDecoration(
                             color: Color(0xFF06ED1D), // Green color
                             borderRadius: BorderRadius.circular(8),
@@ -182,8 +186,8 @@ class _ClassroomPageState extends State<ClassroomPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          width: 300,
-                          height: 50,
+                          width: desksContainerwidth,
+                          height: desksContainerHeight,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(8),
@@ -208,11 +212,10 @@ class _ClassroomPageState extends State<ClassroomPage> {
                         ),
                         const SizedBox(width: 10),
                         Container(
-                          width: 45,
-                          height: 50,
+                          width: desksContainerwidth / 6.5,
+                          height: desksContainerHeight,
                           decoration: BoxDecoration(
-                            color:
-                                Color.fromARGB(255, 237, 44, 6), // Green color
+                            color: Color.fromARGB(255, 237, 44, 6), // Red color
                             borderRadius: BorderRadius.circular(8),
                             boxShadow: [
                               BoxShadow(
@@ -241,8 +244,8 @@ class _ClassroomPageState extends State<ClassroomPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          width: 300,
-                          height: 50,
+                          width: desksContainerwidth,
+                          height: desksContainerHeight,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(8),
@@ -267,8 +270,8 @@ class _ClassroomPageState extends State<ClassroomPage> {
                         ),
                         const SizedBox(width: 10),
                         Container(
-                          width: 45,
-                          height: 50,
+                          width: desksContainerwidth / 6.5,
+                          height: desksContainerHeight,
                           decoration: BoxDecoration(
                             color: Color.fromARGB(255, 255, 102, 1),
                             borderRadius: BorderRadius.circular(8),
@@ -299,8 +302,8 @@ class _ClassroomPageState extends State<ClassroomPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          width: 355,
-                          height: 50,
+                          width: estimatedPeopleContainerWidth,
+                          height: desksContainerHeight,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(8),
@@ -332,8 +335,8 @@ class _ClassroomPageState extends State<ClassroomPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          width: 150,
-                          height: 40,
+                          width: estimatedPeopleContainerWidth / 2.5,
+                          height: desksContainerHeight,
                           decoration: BoxDecoration(
                             color: Color(0xFF2D82B7),
                             borderRadius: BorderRadius.circular(8),
