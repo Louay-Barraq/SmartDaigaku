@@ -102,6 +102,8 @@ flutter:
    - assets/images/5.png
    - assets/images/6.png
    - assets/images/7.png
+   - assets/images/ClassroomLayout.png
+   - assets/images/Cafeteria Layout.png
 
 
   # fonts:
