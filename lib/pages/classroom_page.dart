@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import '../components/drawer.dart';
+import '../components/classroom_layout.dart'; // Import the ClassroomLayout component
 
 class ClassroomPage extends StatefulWidget {
   const ClassroomPage({super.key});
@@ -22,6 +22,9 @@ class _ClassroomPageState extends State<ClassroomPage> {
     final double desksContainerHeight = (classroomHeight - 120) / 5;
     final double estimatedPeopleContainerWidth =
         desksContainerwidth + 10 + desksContainerwidth / 6.5;
+
+    final List<TableData> tablesData =
+        generateMockClassroomData(); // Generate mock data
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
@@ -89,14 +92,13 @@ class _ClassroomPageState extends State<ClassroomPage> {
               ),
               const SizedBox(height: 20),
 
-              // Classroom Layout
+              // Classroom Layout using ClassroomLayout component
               Container(
                 width: screenWidth - 30,
                 height: classroomHeight,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
+                child: ClassroomLayout(tablesData: tablesData),
               ),
+
               const SizedBox(height: 20),
 
               // Estimations Section
@@ -213,8 +215,7 @@ class _ClassroomPageState extends State<ClassroomPage> {
                           width: desksContainerwidth / 6.5,
                           height: desksContainerHeight,
                           decoration: BoxDecoration(
-                            color:
-                                Color.fromARGB(255, 237, 44, 6), // Green color
+                            color: Color.fromARGB(255, 237, 44, 6), // Red color
                             borderRadius: BorderRadius.circular(8),
                             boxShadow: [
                               BoxShadow(
