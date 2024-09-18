@@ -139,7 +139,7 @@ class AuthService {
       _handleAuthException(e);
       return null;
     } catch (e) {
-      print(e);
+      print("HEDHY HEYA L'ERREUR : $e");
       Fluttertoast.showToast(
         msg: 'An unexpected error occurred. Please try again.',
         toastLength: Toast.LENGTH_LONG,
@@ -179,12 +179,17 @@ class AuthService {
           throw Exception('Invalid user type');
       }
 
-      await collection.doc(userCredential.user!.uid).set({
-        'email': userCredential.user!.email,
-        'username': username,
-        'userType': userType,
-        'timestamp': Timestamp.now(),
-      });
+      try {
+        await collection.doc(userCredential.user!.uid).set({
+          'email': userCredential.user!.email,
+          'username': username,
+          'userType': userType,
+          'timestamp': Timestamp.now(),
+        });
+      } catch (e) {
+        print("l erreur lenna");
+        print(e);
+      }
     }
   }
 

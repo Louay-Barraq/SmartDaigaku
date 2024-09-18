@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:smart_daigaku/components/cafeteria_layout.dart';
 import 'package:smart_daigaku/components/drawer.dart';
 
 class CafeteriaPage extends StatefulWidget {
@@ -53,8 +54,9 @@ class _CafeteriaPageState extends State<CafeteriaPage> {
 
   @override
   Widget build(BuildContext context) {
-    final isEmpty = false;
+    final List<TableData> tablesData = generateMockTablesData();
     final double screenWidth = MediaQuery.of(context).size.width;
+    const isEmpty = false;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
@@ -122,14 +124,16 @@ class _CafeteriaPageState extends State<CafeteriaPage> {
                 // Cafeteria Image
                 Center(
                   child: Container(
-                    height: 220,
                     width: screenWidth - 30,
+                    height: 200,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
                     ),
+                    child: CafeteriaLayout(tablesData: tablesData),
                   ),
                 ),
+
                 SizedBox(height: 20),
                 // Informations Section
                 Center(

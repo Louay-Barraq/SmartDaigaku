@@ -36,7 +36,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
-  firebase_core: ^3.1.1
+  firebase_core: ^3.3.0
   firebase_auth: ^5.1.1
   fluttertoast: ^8.2.6
   google_sign_in: ^6.2.1
@@ -84,24 +84,10 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-   - assets/icons/SmartDaigaku_Logo.jpg
-   - assets/images/google_icon.png
-   - assets/images/new_beginnings.png
-   - assets/images/growth.png
-   - assets/images/late_for_class.png
-   - assets/images/reflecting.png
-   - assets/images/profile_picture.png
-   - assets/images/color_wheel.png
-   - assets/images/Graduation_hat.png
-   - assets/images/page_card_bg.png
-   - assets/images/arrow_image.png
-   - assets/images/1.png
-   - assets/images/2.png
-   - assets/images/3.png
-   - assets/images/4.png
-   - assets/images/5.png
-   - assets/images/6.png
-   - assets/images/7.png
+   - assets/images/
+   - assets/icons/
+   - assets/animations/
+   - assets/fonts/
    - assets/images/ClassroomLayout.png
    - assets/images/Cafeteria Layout.png
 

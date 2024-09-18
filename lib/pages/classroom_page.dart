@@ -364,6 +364,7 @@ class _ClassroomPageState extends State<ClassroomPage> {
                   ],
                 ),
               ),
+              SizedBox(height: 20),
             ],
           ),
         ),

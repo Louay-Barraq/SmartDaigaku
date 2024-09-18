@@ -37,10 +37,13 @@ class WeatherComponent extends StatelessWidget {
       );
     } else {
       return Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Image.asset(getWeatherIcon(weather!.weatherId)),
-          SizedBox(width: 50),
+          Image.asset(
+            getWeatherIcon(weather!.weatherId),
+            height: 100,
+            width: 100,
+          ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
