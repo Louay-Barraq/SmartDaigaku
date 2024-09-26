@@ -5,9 +5,9 @@ import 'package:smart_daigaku/components/cafeteria_layout.dart';
 import 'package:smart_daigaku/components/drawer.dart';
 
 class CafeteriaPage extends StatefulWidget {
-  double emptyTables = 12;
-  double occupiedTables = 18;
-  int estimatedPeopleNumber = 47;
+  double emptyTables = 11;
+  double occupiedTables = 12;
+  int estimatedPeopleNumber = 33;
   CafeteriaPage({super.key});
 
   @override
@@ -56,7 +56,7 @@ class _CafeteriaPageState extends State<CafeteriaPage> {
   Widget build(BuildContext context) {
     final List<TableData> tablesData = generateMockTablesData();
     final double screenWidth = MediaQuery.of(context).size.width;
-    const isEmpty = false;
+    const isEmpty = true;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(

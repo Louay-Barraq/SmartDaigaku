@@ -12,22 +12,33 @@ class TableData {
 
 List<TableData> generateMockTablesData() {
   return [
-    TableData(x: 0, y: 0, isOccupied: true),
-    TableData(x: 20, y: 40, isOccupied: true),
-    TableData(x: 40, y: 80, isOccupied: false),
-    TableData(x: 50, y: 50, isOccupied: true),
-    TableData(x: 100, y: 120, isOccupied: false),
-    TableData(x: 60, y: 20, isOccupied: false),
-    TableData(x: 80, y: 30, isOccupied: true),
-    TableData(x: 120, y: 40, isOccupied: false),
-    TableData(x: 150, y: 60, isOccupied: true),
-    TableData(x: 180, y: 90, isOccupied: false),
-    TableData(x: 200, y: 70, isOccupied: true),
-    TableData(x: 220, y: 110, isOccupied: false),
-    TableData(x: 250, y: 100, isOccupied: true),
-    TableData(x: 280, y: 30, isOccupied: false),
-    TableData(x: 300, y: 50, isOccupied: true),
-    TableData(x: 305, y: 80, isOccupied: false),
+    // 1st Row
+    TableData(x: 150, y: 25, isOccupied: true),
+    TableData(x: 175, y: 25, isOccupied: false),
+    TableData(x: 200, y: 25, isOccupied: false),
+    TableData(x: 225, y: 25, isOccupied: true),
+    TableData(x: 250, y: 25, isOccupied: false),
+    TableData(x: 275, y: 25, isOccupied: true),
+    // 2nd Row
+    TableData(x: 150, y: 50, isOccupied: false),
+    TableData(x: 175, y: 50, isOccupied: true),
+    TableData(x: 200, y: 50, isOccupied: false),
+    TableData(x: 225, y: 50, isOccupied: true),
+    TableData(x: 250, y: 50, isOccupied: true),
+    TableData(x: 275, y: 50, isOccupied: false),
+    // 3rd Row
+    TableData(x: 150, y: 80, isOccupied: true),
+    TableData(x: 175, y: 80, isOccupied: false),
+    TableData(x: 200, y: 80, isOccupied: true),
+    TableData(x: 225, y: 80, isOccupied: true),
+    TableData(x: 250, y: 80, isOccupied: false),
+    TableData(x: 275, y: 80, isOccupied: false),
+    // 4th Row
+    TableData(x: 175, y: 105, isOccupied: true),
+    TableData(x: 200, y: 105, isOccupied: false),
+    TableData(x: 225, y: 105, isOccupied: true),
+    TableData(x: 250, y: 105, isOccupied: true),
+    TableData(x: 275, y: 105, isOccupied: false),
   ];
 }
 
