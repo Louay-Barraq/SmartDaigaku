@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:smart_daigaku/components/cafeteria_layout.dart';
 import 'package:smart_daigaku/components/drawer.dart';
+import 'package:smart_daigaku/themes/theme_provider.dart';
 
 class CafeteriaPage extends StatefulWidget {
   double emptyTables = 11;
@@ -183,7 +185,10 @@ class _CafeteriaPageState extends State<CafeteriaPage> {
                               child: Text(
                                 'Empty Tables',
                                 style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.w700),
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.black,
+                                ),
                               ),
                             ),
                           ),
@@ -239,7 +244,9 @@ class _CafeteriaPageState extends State<CafeteriaPage> {
                               child: Text(
                                 'Occupied Tables',
                                 style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.w700),
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.black),
                               ),
                             ),
                           ),
@@ -324,9 +331,9 @@ class _CafeteriaPageState extends State<CafeteriaPage> {
                               child: Text(
                                 'Number of People',
                                 style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
-                                ),
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.black),
                               ),
                             ),
                           ),
@@ -381,7 +388,9 @@ class _CafeteriaPageState extends State<CafeteriaPage> {
                           child: Text(
                             'Cafeteria\'s State',
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w700),
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.black),
                           ),
                         ),
                       ),
