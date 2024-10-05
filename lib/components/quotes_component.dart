@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import '../services/weather/quotes/quotes_model.dart';
-import '../services/weather/quotes/quotes_service.dart';
+import '../services/quotes/quotes_model.dart';
+import '../services/quotes/quotes_service.dart';
 
 class QuotesComponent extends StatefulWidget {
   const QuotesComponent({super.key});
@@ -66,7 +66,7 @@ class _QuotesComponentState extends State<QuotesComponent> {
                   return Text(
                     'Error: ${snapshot.error}',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 14,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
@@ -81,7 +81,7 @@ class _QuotesComponentState extends State<QuotesComponent> {
                         "'' ${snapshot.data!.quote} ''",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 14,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),

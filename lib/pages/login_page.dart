@@ -20,11 +20,30 @@ class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
+  void showLoadingDialog() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+  }
+
+  void dismissLoadingDialog() {
+    Navigator.of(context).pop();
+  }
+
   void signInWithGoogle() async {
+    showLoadingDialog();
     var userCredential =
         await AuthService().signInWithGoogle(selectedType: widget.userType);
+    dismissLoadingDialog();
+
     if (userCredential != null) {
-      await Future.delayed(Duration(seconds: 1));
+      await Future.delayed(Duration(milliseconds: 250));
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -35,13 +54,14 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void signInWithEmailAndPwd() async {
+    showLoadingDialog();
     var userCredential = await AuthService().loginWithEmail(
         email: _emailController.text,
         password: _passwordController.text,
         selectedType: widget.userType);
-    print("signIn Value : $userCredential");
+    dismissLoadingDialog();
     if (userCredential != null) {
-      await Future.delayed(Duration(seconds: 1));
+      await Future.delayed(Duration(milliseconds: 250));
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(

@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:smart_daigaku/auth/auth_page.dart';
@@ -47,7 +46,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           theme: themeProvider.themeData,
           debugShowCheckedModeBanner: false,
-          home: HomePage(),
+          home: AuthPage(),
         );
       },
     );

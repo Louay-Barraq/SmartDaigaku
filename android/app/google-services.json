@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "504247630694",
+    "project_id": "smart-daigaku",
+    "storage_bucket": "smart-daigaku.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:504247630694:android:9b3e1af266b8a8ab1126a7",
+        "android_client_info": {
+          "package_name": "com.example.smart_daigaku"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "504247630694-7q2v4vuqp645vjtd24jahpm7lt8j7tuj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.smart_daigaku",
+            "certificate_hash": "82bffe9ce38acd5bc13612337030951a7e702331"
+          }
+        },
+        {
+          "client_id": "504247630694-n211uuslsceg062fb9jq6sn2s4rcsbog.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCatiCSriZ8kf1YImvEnzawUxaAk38Mzbw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "504247630694-n211uuslsceg062fb9jq6sn2s4rcsbog.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "504247630694-7eh7jueefc0sm2gidsj8cqpro4temedh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.smartdaigaku"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

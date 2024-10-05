@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:smart_daigaku/components/drawer_element.dart';
 import 'package:smart_daigaku/components/theme_toggle.dart';
 import 'package:smart_daigaku/components/user_profile_card.dart';
+import 'package:smart_daigaku/pages/availability_page.dart';
 import 'package:smart_daigaku/pages/home_page.dart';
 import '../pages/cafeteria_page.dart';
 import '../pages/classroom_page.dart';
@@ -69,7 +70,7 @@ class _AppDrawerState extends State<AppDrawer> {
                     ),
                   ),
                   Text(
-                    'daigaku',
+                    'Daigaku',
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.tertiary,
                       fontSize: 28,
@@ -108,6 +109,13 @@ class _AppDrawerState extends State<AppDrawer> {
             icon: Icons.notifications,
             isSelected: _selectedElement == 'Overall',
             onTap: () => _navigateTo('Overall', OverallPage()),
+          ),
+          SizedBox(height: 10),
+          DrawerElement(
+            elementTitle: "Availability",
+            icon: Icons.desk,
+            isSelected: _selectedElement == 'Availability',
+            onTap: () => _navigateTo('Availability', AvailabilityPage()),
           ),
           SizedBox(height: 10),
           DrawerElement(

@@ -50,21 +50,21 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBCQgZoRqtAw7edouWYjH_LcvocMNtqaXg',
-    appId: '1:848255850094:android:bb8493eb3ee2be61fe787f',
-    messagingSenderId: '848255850094',
-    projectId: 'smart-daigaku-d4422',
-    storageBucket: 'smart-daigaku-d4422.appspot.com',
+    apiKey: 'AIzaSyCatiCSriZ8kf1YImvEnzawUxaAk38Mzbw',
+    appId: '1:504247630694:android:9b3e1af266b8a8ab1126a7',
+    messagingSenderId: '504247630694',
+    projectId: 'smart-daigaku',
+    storageBucket: 'smart-daigaku.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyA_3omUHI9G4Rch3UGCGzUhDEtnEYklJ3s',
-    appId: '1:848255850094:ios:3216e283bba56734fe787f',
-    messagingSenderId: '848255850094',
-    projectId: 'smart-daigaku-d4422',
-    storageBucket: 'smart-daigaku-d4422.appspot.com',
-    iosClientId:
-        '848255850094-rrdud6sjml9vrhnfntjrvjoqc30rm7ar.apps.googleusercontent.com',
+    apiKey: 'AIzaSyDXG6P5Mx41uaOmHGjfpMoElraRCgIgTYE',
+    appId: '1:504247630694:ios:680e0297386c47d51126a7',
+    messagingSenderId: '504247630694',
+    projectId: 'smart-daigaku',
+    storageBucket: 'smart-daigaku.appspot.com',
+    androidClientId: '504247630694-7q2v4vuqp645vjtd24jahpm7lt8j7tuj.apps.googleusercontent.com',
+    iosClientId: '504247630694-7eh7jueefc0sm2gidsj8cqpro4temedh.apps.googleusercontent.com',
     iosBundleId: 'com.example.smartdaigaku',
   );
 }

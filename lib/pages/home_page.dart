@@ -2,10 +2,9 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:smart_daigaku/components/component_3.dart';
 import 'package:smart_daigaku/components/quotes_component.dart';
 import 'package:smart_daigaku/components/weather_component.dart';
-import 'package:smart_daigaku/pages/availability_Page.dart';
+import 'package:smart_daigaku/pages/availability_page.dart';
 import 'package:smart_daigaku/pages/cafeteria_page.dart';
 import 'package:smart_daigaku/pages/classroom_page.dart';
 import 'package:smart_daigaku/pages/overall_page.dart';
@@ -39,13 +38,11 @@ class _HomePageState extends State<HomePage> {
     _pageController = PageController(initialPage: 0);
     _timer = Timer.periodic(Duration(seconds: 7), (Timer timer) {
       int nextPage = _pageController.page!.round() + 1;
-      if (nextPage == 3) {
-        nextPage = 0;
-      }
+      nextPage = nextPage == 0 ? 1 : 0;
       _pageController.animateToPage(
         nextPage,
-        duration: Duration(milliseconds: 100),
-        curve: Curves.easeIn,
+        duration: Duration(milliseconds: 200),
+        curve: Curves.easeInOut,
       );
     });
     _fetchWeather();
@@ -89,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      SizedBox(height: 30),
+                      SizedBox(height: 45),
                       Icon(
                         Icons.school,
                         size: 80,
@@ -173,7 +170,6 @@ class _HomePageState extends State<HomePage> {
                               children: [
                                 WeatherComponent(weather: _weather),
                                 QuotesComponent(),
-                                Component3(),
                               ],
                             ),
                             Positioned(
@@ -183,7 +179,7 @@ class _HomePageState extends State<HomePage> {
                               child: Center(
                                 child: SmoothPageIndicator(
                                   controller: _pageController,
-                                  count: 3,
+                                  count: 2,
                                   effect: WormEffect(
                                     dotHeight: 8,
                                     dotWidth: 8,
